@@ -34,15 +34,10 @@ export function ScreensSection () {
     <section
       ref={sectionRef}
       id="screens"
-      className="relative flex min-h-svh flex-col justify-center bg-linear-to-b from-brand-blush/50 via-white to-neutral-100 pt-22 pb-12 md:pb-16"
+      className="relative flex min-h-svh flex-col bg-white pt-22 pb-10 md:h-svh md:overflow-hidden md:pb-6"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(219,44,145,0.10)_0%,transparent_60%),radial-gradient(circle_at_15%_75%,rgba(145,40,141,0.08)_0%,transparent_50%)]"
-        aria-hidden
-      />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="mb-12 text-center sm:mb-16">
+      <div className="relative z-10 mx-auto w-full max-w-7xl shrink-0 px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="mb-8 text-center sm:mb-10 md:mb-8">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-pink/30 bg-brand-blush/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             <span>{t('badge')}</span>
@@ -55,22 +50,22 @@ export function ScreensSection () {
         </ScrollReveal>
       </div>
 
-      <div ref={wrapperRef} className="relative z-10 w-full overflow-hidden">
+      <div ref={wrapperRef} className="relative z-10 min-h-0 w-full flex-1 overflow-hidden">
         <div
           ref={innerRef}
-          className="flex flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-end md:gap-10 md:px-8 lg:px-16"
+          className="flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-center md:gap-10 md:px-8 lg:px-16"
         >
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="shrink-0 rounded-[2.2rem] border border-brand-blush/80 bg-white p-3 shadow-xl shadow-brand-lilac/20"
+              className="flex h-auto max-h-full shrink-0 items-center rounded-[2.2rem] border border-brand-blush/80 bg-white p-2 shadow-xl shadow-brand-lilac/20 sm:p-3 md:h-full md:p-2.5"
             >
               <Image
                 src={src}
                 alt=""
                 width={280}
                 height={560}
-                className="h-auto w-[220px] sm:w-[240px] md:w-[260px]"
+                className="h-auto w-[220px] sm:w-[240px] md:h-full md:w-auto md:max-h-full md:object-contain"
                 priority={index === 0}
               />
             </div>

@@ -12,13 +12,8 @@ export function AboutSection () {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-linear-to-b from-brand-blush/40 via-white to-white py-24 sm:py-32"
+      className="relative overflow-hidden bg-white py-24 sm:py-32"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(145,40,141,0.10)_0%,transparent_55%)]"
-        aria-hidden
-      />
-
       <div className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-blush bg-brand-blush/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-xs">

@@ -28,17 +28,34 @@ export const SERVICES_PHONE_SRC = SERVICES_PHONE_SRC_EN
 export const APPLE_STORE_BTN_SRC = localAsset('/images/stores-section/apple-store.png')
 export const GOOGLE_PLAY_BTN_SRC = localAsset('/images/stores-section/google-play.png')
 
-export const APP_SCREEN_SRC_AR = localAsset('/images/app-screen-section/app-screen-section-img-1.png')
-export const APP_SCREEN_SRC_EN = localAsset('/images/app-screen-section/app-screen-section-img-1-en.png')
-export const APP_SCREEN_REPEAT_COUNT = 8
+const APP_SCREEN_BASENAMES = [
+  'notifications',
+  'offers',
+  'orders',
+  'profile',
+  'support',
+  'tickets-history'
+] as const
+
+export const APP_SCREEN_SRCS_AR = APP_SCREEN_BASENAMES.map((name) =>
+  localAsset(`/images/app-screen-section/${name}-ar.jpeg`)
+)
+
+export const APP_SCREEN_SRCS_EN = APP_SCREEN_BASENAMES.map((name) =>
+  localAsset(`/images/app-screen-section/${name}-en.jpeg`)
+)
+
+/** @deprecated Use `appScreenSrcs(locale)` */
+export const APP_SCREEN_SRC_AR = APP_SCREEN_SRCS_AR[0]
+/** @deprecated Use `appScreenSrcs(locale)` */
+export const APP_SCREEN_SRC_EN = APP_SCREEN_SRCS_EN[0]
 
 export function appScreenSrc (locale: string) {
   return locale === 'ar' ? APP_SCREEN_SRC_AR : APP_SCREEN_SRC_EN
 }
 
 export function appScreenSrcs (locale: string) {
-  const src = appScreenSrc(locale)
-  return Array.from({ length: APP_SCREEN_REPEAT_COUNT }, () => src)
+  return locale === 'ar' ? APP_SCREEN_SRCS_AR : APP_SCREEN_SRCS_EN
 }
 
 export const HERO_SCENE_SRC =

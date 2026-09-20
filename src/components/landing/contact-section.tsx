@@ -15,13 +15,8 @@ export function ContactSection () {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-linear-to-b from-white via-brand-blush/25 to-white py-24 sm:py-32"
+      className="relative overflow-hidden bg-white py-24 sm:py-32"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,rgba(145,40,141,0.08)_0%,transparent_50%),radial-gradient(circle_at_85%_60%,rgba(219,44,145,0.08)_0%,transparent_50%)]"
-        aria-hidden
-      />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mb-16 text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-blush bg-brand-blush/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-xs">
