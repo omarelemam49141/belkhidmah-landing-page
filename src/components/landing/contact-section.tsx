@@ -3,13 +3,12 @@
 import { MapPin, Phone, Sparkles } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
-import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { PLACEHOLDER_CONTACT, googleMapsEmbedSrc } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
 
-const CONTACT_CARD_3D =
-  'rounded-2xl border border-glow-cool/40 bg-white shadow-[0_2px_3px_rgba(11,19,36,0.06),0_10px_24px_-6px_rgba(75,109,148,0.32),0_28px_56px_-18px_rgba(11,19,36,0.22),inset_0_1px_0_rgba(255,255,255,1)]'
+const CONTACT_CARD =
+  'rounded-2xl border border-glow-cool/40 bg-white'
 
 export function ContactSection () {
   const t = useTranslations('contact')
@@ -33,11 +32,11 @@ export function ContactSection () {
 
         <div className="grid items-stretch gap-8 lg:grid-cols-2">
           <ScrollReveal>
-            <div className="h-full rounded-2xl border border-brand-blush/80 bg-white p-8 shadow-md shadow-brand-lilac/15">
+            <div className={cn('h-full p-8', CONTACT_CARD)}>
               <h3 className="mb-6 text-lg font-bold text-brand-magenta">{t('details')}</h3>
               <ul className="space-y-5 text-neutral-700">
                 <li className="flex items-start gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand-blush bg-brand-blush/60 text-brand-magenta">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-glow-cool/30 bg-glow-cool/10 text-brand-magenta">
                     <Phone className="h-5 w-5" />
                   </span>
                   <div>
@@ -46,7 +45,7 @@ export function ContactSection () {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand-pink/20 bg-brand-blush/70 text-brand-pink">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-glow-cool/30 bg-glow-cool/10 text-brand-magenta">
                     <MapPin className="h-5 w-5" />
                   </span>
                   <div>
@@ -59,7 +58,7 @@ export function ContactSection () {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="relative h-full min-h-80 overflow-hidden rounded-2xl border border-brand-blush/80 bg-white shadow-md shadow-brand-lilac/15">
+            <div className={cn('relative h-full min-h-80 overflow-hidden', CONTACT_CARD)}>
               <iframe
                 title={t('mapTitle')}
                 src={googleMapsEmbedSrc(locale)}

@@ -17,11 +17,7 @@ import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
-import {
-  SERVICES_PHONE_SRC_AR,
-  SERVICES_PHONE_SRC_EN,
-  SERVICES_SCENE_SRC
-} from '@/lib/landing/assets'
+import { servicesPhoneScreens, SERVICES_SCENE_SRC } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
 
 const SERVICE_ITEMS = [

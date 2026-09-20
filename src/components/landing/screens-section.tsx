@@ -58,7 +58,7 @@ export function ScreensSection () {
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-brand-blush/80 bg-white p-2 shadow-xl shadow-brand-lilac/20 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5"
+              className="flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-glow-cool/40 bg-white p-2 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5"
             >
               <Image
                 src={src}

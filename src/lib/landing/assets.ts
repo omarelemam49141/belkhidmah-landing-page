@@ -8,9 +8,17 @@ export const LOGO_SRC = localAsset('/images/logo.svg')
 
 export const HERO_PHONE_SRC_AR = localAsset('/images/hero-section/companies-ar.jpeg')
 export const HERO_PHONE_SRC_EN = localAsset('/images/hero-section/companies-en.jpeg')
+export const HERO_FAQ_SRC_AR = localAsset('/images/hero-section/faqs-ar.jpeg')
+export const HERO_FAQ_SRC_EN = localAsset('/images/hero-section/faqs-en.jpeg')
 
 export function heroPhoneSrc (locale: string) {
   return locale === 'ar' ? HERO_PHONE_SRC_AR : HERO_PHONE_SRC_EN
+}
+
+export function heroPhoneScreens (locale: string) {
+  return locale === 'ar'
+    ? [HERO_PHONE_SRC_AR, HERO_FAQ_SRC_AR]
+    : [HERO_PHONE_SRC_EN, HERO_FAQ_SRC_EN]
 }
 
 /** @deprecated Use `heroPhoneSrc(locale)` */
@@ -18,9 +26,17 @@ export const HERO_PHONE_SRC = HERO_PHONE_SRC_AR
 
 export const SERVICES_PHONE_SRC_AR = localAsset('/images/services-section/favourite-ar.jpeg')
 export const SERVICES_PHONE_SRC_EN = localAsset('/images/services-section/favourite-en.jpeg')
+export const SERVICES_ORDERS_SRC_AR = localAsset('/images/services-section/orders-ar.jpeg')
+export const SERVICES_ORDERS_SRC_EN = localAsset('/images/services-section/orders-en.jpeg')
 
 export function servicesPhoneSrc (locale: string) {
   return locale === 'ar' ? SERVICES_PHONE_SRC_AR : SERVICES_PHONE_SRC_EN
+}
+
+export function servicesPhoneScreens (locale: string) {
+  return locale === 'ar'
+    ? [SERVICES_PHONE_SRC_AR, SERVICES_ORDERS_SRC_AR]
+    : [SERVICES_PHONE_SRC_EN, SERVICES_ORDERS_SRC_EN]
 }
 
 /** @deprecated Use `servicesPhoneSrc(locale)` */

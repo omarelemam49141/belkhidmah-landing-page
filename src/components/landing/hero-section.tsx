@@ -8,12 +8,12 @@ import { FadeIn } from '@/components/motion/fade-in'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
-import { heroPhoneSrc, HERO_SCENE_SRC } from '@/lib/landing/assets'
+import { heroPhoneScreens, HERO_SCENE_SRC } from '@/lib/landing/assets'
 
 export function HeroSection () {
   const locale = useLocale()
   const t = useTranslations('hero')
-  const phoneSrc = heroPhoneSrc(locale)
+  const phoneScreens = heroPhoneScreens(locale)
 
   return (
     <section id="home" className="relative flex min-h-[94vh] items-center overflow-hidden">
@@ -31,7 +31,7 @@ export function HeroSection () {
             <div className="absolute inset-8 rounded-[3rem] bg-glow-cool/35 blur-3xl" aria-hidden />
             <div className="relative z-10 animate-float">
               <SpotlightTiltCard glass={false}>
-                <PhoneMockup src={phoneSrc} priority />
+                <PhoneMockup screens={phoneScreens} priority />
               </SpotlightTiltCard>
             </div>
           </FadeIn>
