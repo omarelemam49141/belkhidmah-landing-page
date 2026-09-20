@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { initTextHighlight } from '@/lib/motion/text-highlight'
@@ -44,7 +44,7 @@ export function ScrollHighlightHeading ({
   const byWord = locale === 'ar'
   const parts = useMemo(() => splitHighlightText(text, byWord), [text, byWord])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (reduced || !headingRef.current) return
     return initTextHighlight(headingRef.current)
   }, [reduced, text, byWord])

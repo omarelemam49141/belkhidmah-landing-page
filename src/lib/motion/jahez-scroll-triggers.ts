@@ -50,6 +50,8 @@ export function initHorizontalPinScroll(options: {
     })
 
     ScrollTrigger.refresh()
+    window.setTimeout(() => ScrollTrigger.refresh(), 150)
+    window.setTimeout(() => ScrollTrigger.refresh(), 700)
   }
 
   const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
