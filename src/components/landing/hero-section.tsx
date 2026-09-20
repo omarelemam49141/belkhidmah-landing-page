@@ -2,14 +2,16 @@
 
 import Image from 'next/image'
 import { ArrowRight, Sparkles } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { FadeIn } from '@/components/motion/fade-in'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
-import { HERO_PHONE_SRC, HERO_SCENE_SRC } from '@/lib/landing/assets'
+import { heroPhoneSrc, HERO_SCENE_SRC } from '@/lib/landing/assets'
 
 export function HeroSection () {
+  const locale = useLocale()
   const t = useTranslations('hero')
+  const phoneSrc = heroPhoneSrc(locale)
 
   return (
     <section id="home" className="relative flex min-h-[94vh] items-center overflow-hidden">
@@ -26,7 +28,7 @@ export function HeroSection () {
           <FadeIn delay={0.2} className="relative">
             <div className="absolute inset-8 rounded-[3rem] bg-trust-blue-400/30 blur-3xl" aria-hidden />
             <Image
-              src={HERO_PHONE_SRC}
+              src={phoneSrc}
               alt=""
               width={420}
               height={840}
