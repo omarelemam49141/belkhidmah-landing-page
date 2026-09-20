@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
 import { FadeIn } from '@/components/motion/fade-in'
+import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import {

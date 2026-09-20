@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
+import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
@@ -31,8 +32,7 @@ const SERVICE_ITEMS = [
 export function ServicesSection () {
   const locale = useLocale()
   const t = useTranslations('services')
-  const phoneSrc =
-    locale === 'ar' ? SERVICES_PHONE_SRC_AR : SERVICES_PHONE_SRC_EN
+  const phoneScreens = servicesPhoneScreens(locale)
   const reduced = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -59,7 +59,8 @@ export function ServicesSection () {
         <ScrollReveal className="flex justify-center lg:justify-start">
           <SpotlightTiltCard glass={false}>
             <PhoneMockup
-              src={phoneSrc}
+              screens={phoneScreens}
+              axis="horizontal"
               priority
               className="w-[240px] sm:w-[280px] lg:w-[320px]"
             />
@@ -67,14 +68,20 @@ export function ServicesSection () {
         </ScrollReveal>
 
         <div>
-          <ScrollReveal className="mb-10">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs">
-              <Sparkles className="h-3.5 w-3.5 text-brand-blush" />
-              <span>{t('badge')}</span>
-            </div>
-            <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-white')}>{t('title')}</h2>
-            <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-pink to-brand-lilac" />
-          </ScrollReveal>
+          <div className="mb-10">
+            <ScrollReveal>
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs">
+                <Sparkles className="h-3.5 w-3.5 text-brand-blush" />
+                <span>{t('badge')}</span>
+              </div>
+            </ScrollReveal>
+            <ScrollHighlightHeading className={cn(LANDING_SECTION_TITLE_CLASS, 'text-white')}>
+              {t('title')}
+            </ScrollHighlightHeading>
+            <ScrollReveal>
+              <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-pink to-brand-lilac" />
+            </ScrollReveal>
+          </div>
 
           <ul className="space-y-3">
             {SERVICE_ITEMS.map((item) => {

@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
+import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
@@ -45,11 +46,12 @@ export function HeroSection () {
             />
           </FadeIn>
 
-          <FadeIn delay={0.15}>
-            <h1 className="mb-4 max-w-xl text-balance text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:max-w-none lg:text-6xl">
-              {t('title')}
-            </h1>
-          </FadeIn>
+          <ScrollHighlightHeading
+            as="h1"
+            className="mb-4 max-w-xl text-balance text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:max-w-none lg:text-6xl"
+          >
+            {t('title')}
+          </ScrollHighlightHeading>
 
           <FadeIn delay={0.3}>
             <p className="mb-2 text-xl font-semibold text-white sm:text-2xl">{t('subtitle')}</p>
