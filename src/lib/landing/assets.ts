@@ -4,6 +4,8 @@ function localAsset (path: string) {
   return `${BASE_PATH}${path}`
 }
 
+export const LOGO_SRC = localAsset('/images/logo.svg')
+
 export const HERO_PHONE_SRC_AR = localAsset('/images/hero-section/hero-section-phone-img-1.png')
 export const HERO_PHONE_SRC_EN = localAsset('/images/hero-section/hero-section-phone-img-en.png')
 

@@ -1,26 +1,37 @@
-import { Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { LOGO_SRC } from '@/lib/landing/assets'
 
 export function BrandMark ({
   size = 40,
   framed = false,
-  className
+  className,
+  alt = ''
 }: {
   size?: number
   framed?: boolean
   className?: string
+  alt?: string
 }) {
+  const decorative = alt === ''
+
   return (
     <span
       className={cn(
-        'inline-flex items-center justify-center rounded-xl bg-linear-to-br from-trust-blue-500 to-trust-blue-700 text-white',
-        framed && 'border border-white/20 bg-white/10 p-0.5 shadow-md from-trust-blue-400/80 to-warm-orange-500/70',
+        'inline-flex shrink-0 items-center justify-center overflow-hidden',
+        framed && 'rounded-xl border border-white/20 bg-white p-1 shadow-md',
         className
       )}
       style={{ width: size, height: size }}
-      aria-hidden
+      aria-hidden={decorative || undefined}
     >
-      <Sparkles className="size-[55%]" />
+      {/* eslint-disable-next-line @next/next/no-img-element -- SVG brand mark, skip next/image optimizer */}
+      <img
+        src={LOGO_SRC}
+        alt={alt}
+        width={size}
+        height={size}
+        className="h-full w-full object-contain"
+      />
     </span>
   )
 }

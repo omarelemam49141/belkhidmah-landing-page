@@ -1,8 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
+import { BrandMark } from '@/components/brand/BrandMark'
 import { FadeIn } from '@/components/motion/fade-in'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
