@@ -35,11 +35,7 @@ export function DownloadSection () {
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white shadow-xl backdrop-blur-md sm:text-sm">
-            <span className="flex h-2 w-2 rounded-full bg-impact-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)]" />
-            <Sparkles className="h-3.5 w-3.5 text-warm-orange-400" />
-            <span>{t('badge')}</span>
-          </div>
+          <BrandMark size={80} className="mx-auto mb-6 drop-shadow-lg" />
         </FadeIn>
 
         <FadeIn delay={0.15}>

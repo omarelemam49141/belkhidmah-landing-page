@@ -218,8 +218,13 @@ export function LandingNavbar () {
               className="flex w-[min(100vw-2rem,20rem)] flex-col border-white/10 bg-neutral-950/95 p-0 text-white backdrop-blur-xl"
             >
               <SheetHeader className="border-b border-white/10 px-5 py-4">
-                <SheetTitle className="text-white">{tNav('menuTitle')}</SheetTitle>
-                <SheetDescription className="sr-only">{tNav('primary')}</SheetDescription>
+                <div className="flex items-center gap-3">
+                  <BrandMark size={36} framed />
+                  <div className="min-w-0 text-start">
+                    <SheetTitle className="text-white">{tFooter('brand')}</SheetTitle>
+                    <SheetDescription className="text-white/60">{tNav('menuTitle')}</SheetDescription>
+                  </div>
+                </div>
               </SheetHeader>
 
               <motion.nav

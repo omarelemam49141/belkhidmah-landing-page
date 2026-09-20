@@ -46,11 +46,10 @@ export function HeroSection () {
 
         <div className="order-1 text-center lg:order-2 lg:text-start">
           <FadeIn>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md sm:text-sm">
-              <span className="flex h-2 w-2 rounded-full bg-impact-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)]" />
-              <Sparkles className="h-3.5 w-3.5 text-warm-orange-400" />
-              <span>{t('badge')}</span>
-            </div>
+            <BrandMark
+              size={72}
+              className="mx-auto mb-6 drop-shadow-lg lg:mx-0"
+            />
           </FadeIn>
 
           <FadeIn delay={0.15}>
