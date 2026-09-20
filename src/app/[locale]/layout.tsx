@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, getTranslations } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { cairo, tajawal } from '@/lib/fonts'
 import { routing } from '@/i18n/routing'
+import '../globals.css'
 
 export function generateStaticParams () {
   return routing.locales.map((locale) => ({ locale }))
@@ -39,11 +41,23 @@ export default async function LocaleLayout ({
     notFound()
   }
 
+  setRequestLocale(locale)
+
   const messages = await getMessages({ locale })
+  const isRTL = locale === 'ar'
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <html
+      lang={locale}
+      dir={isRTL ? 'rtl' : 'ltr'}
+      className={`${cairo.variable} ${tajawal.variable}${isRTL ? ' locale-ar' : ''}`}
+      suppressHydrationWarning
+    >
+      <body className={`${cairo.className} font-sans antialiased min-h-screen`}>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
   )
 }
