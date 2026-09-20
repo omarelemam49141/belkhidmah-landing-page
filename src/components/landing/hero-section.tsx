@@ -6,6 +6,7 @@ import { BrandMark } from '@/components/brand/BrandMark'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
 import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
+import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
@@ -53,12 +54,12 @@ export function HeroSection () {
             {t('title')}
           </ScrollHighlightHeading>
 
-          <FadeIn delay={0.3}>
-            <p className="mb-2 text-xl font-semibold text-white sm:text-2xl">{t('subtitle')}</p>
-            <p className="mx-auto max-w-xl text-base font-normal leading-relaxed text-white/90 sm:text-xl lg:mx-0">
-              {t('description')}
-            </p>
-          </FadeIn>
+          <ScrollLineReveal className="mb-2 text-xl font-semibold text-white sm:text-2xl">
+            {t('subtitle')}
+          </ScrollLineReveal>
+          <ScrollLineReveal className="mx-auto max-w-xl text-base font-normal leading-relaxed text-white/90 sm:text-xl lg:mx-0">
+            {t('description')}
+          </ScrollLineReveal>
 
           <FadeIn delay={0.45} className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <MotionButton

@@ -3,6 +3,7 @@
 import { Sparkles } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
+import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { cn } from '@/lib/utils'
@@ -27,10 +28,10 @@ export function AboutSection () {
         </ScrollHighlightHeading>
         <ScrollReveal>
           <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink" />
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">
-            {t('body')}
-          </p>
         </ScrollReveal>
+        <ScrollLineReveal className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg">
+          {t('body')}
+        </ScrollLineReveal>
       </div>
     </section>
   )

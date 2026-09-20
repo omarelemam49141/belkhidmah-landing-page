@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Sparkles } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
+import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { initHorizontalPinScroll } from '@/lib/motion/jahez-scroll-triggers'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
@@ -50,10 +51,10 @@ export function ScreensSection () {
           </ScrollHighlightHeading>
           <ScrollReveal>
             <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink" />
-            <p className="mx-auto mt-4 max-w-2xl text-base text-neutral-600 sm:text-lg">
-              {t('subtitle')}
-            </p>
           </ScrollReveal>
+          <ScrollLineReveal className="mx-auto mt-4 max-w-2xl text-base text-neutral-600 sm:text-lg">
+            {t('subtitle')}
+          </ScrollLineReveal>
         </div>
       </div>
 
