@@ -34,22 +34,22 @@ export function ScreensSection () {
     <section
       ref={sectionRef}
       id="screens"
-      className="relative flex min-h-svh flex-col justify-center bg-linear-to-b from-amber-50 via-white to-slate-100 pt-22 pb-12 md:pb-16"
+      className="relative flex min-h-svh flex-col justify-center bg-linear-to-b from-brand-blush/50 via-white to-neutral-100 pt-22 pb-12 md:pb-16"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(245,158,11,0.08)_0%,transparent_60%),radial-gradient(circle_at_15%_75%,rgba(2,132,199,0.06)_0%,transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(219,44,145,0.10)_0%,transparent_60%),radial-gradient(circle_at_15%_75%,rgba(145,40,141,0.08)_0%,transparent_50%)]"
         aria-hidden
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal className="mb-12 text-center sm:mb-16">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-amber-700 shadow-sm">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-pink/30 bg-brand-blush/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             <span>{t('badge')}</span>
           </div>
-          <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-slate-900')}>{t('title')}</h2>
-          <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-trust-blue-500 to-warm-orange-500" />
-          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
+          <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-brand-magenta')}>{t('title')}</h2>
+          <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink" />
+          <p className="mx-auto mt-4 max-w-2xl text-base text-neutral-600 sm:text-lg">
             {t('subtitle')}
           </p>
         </ScrollReveal>
@@ -63,7 +63,7 @@ export function ScreensSection () {
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="shrink-0 rounded-[2.2rem] border border-slate-200/80 bg-white p-3 shadow-xl shadow-slate-200/80"
+              className="shrink-0 rounded-[2.2rem] border border-brand-blush/80 bg-white p-3 shadow-xl shadow-brand-lilac/20"
             >
               <Image
                 src={src}

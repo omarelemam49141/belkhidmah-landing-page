@@ -56,7 +56,7 @@ export function ServicesSection () {
         src={SERVICES_SCENE_SRC}
         overlayClassName="bg-neutral-950/78"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(14,165,233,0.18)_0%,transparent_55%),radial-gradient(ellipse_at_right,rgba(249,115,22,0.12)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(145,40,141,0.28)_0%,transparent_55%),radial-gradient(ellipse_at_right,rgba(219,44,145,0.18)_0%,transparent_50%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -76,11 +76,11 @@ export function ServicesSection () {
         <div>
           <ScrollReveal className="mb-10">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs">
-              <Sparkles className="h-3.5 w-3.5 text-warm-orange-400" />
+              <Sparkles className="h-3.5 w-3.5 text-brand-blush" />
               <span>{t('badge')}</span>
             </div>
             <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-white')}>{t('title')}</h2>
-            <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-warm-orange-500 to-trust-blue-400" />
+            <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-pink to-brand-lilac" />
           </ScrollReveal>
 
           <ul className="space-y-3">
