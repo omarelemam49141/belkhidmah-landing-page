@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { FadeIn } from '@/components/motion/fade-in'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
+import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
 import { heroPhoneSrc, HERO_SCENE_SRC } from '@/lib/landing/assets'
 
 export function HeroSection () {
@@ -27,14 +28,18 @@ export function HeroSection () {
         <div className="order-2 flex justify-center lg:order-1">
           <FadeIn delay={0.2} className="relative">
             <div className="absolute inset-8 rounded-[3rem] bg-trust-blue-400/30 blur-3xl" aria-hidden />
-            <Image
-              src={phoneSrc}
-              alt=""
-              width={420}
-              height={840}
-              priority
-              className="relative z-10 h-auto w-[240px] drop-shadow-2xl animate-float sm:w-[280px] lg:w-[320px]"
-            />
+            <div className="relative z-10 animate-float">
+              <SpotlightTiltCard glass={false}>
+                <Image
+                  src={phoneSrc}
+                  alt=""
+                  width={420}
+                  height={840}
+                  priority
+                  className="h-auto w-[240px] drop-shadow-2xl sm:w-[280px] lg:w-[320px]"
+                />
+              </SpotlightTiltCard>
+            </div>
           </FadeIn>
         </div>
 

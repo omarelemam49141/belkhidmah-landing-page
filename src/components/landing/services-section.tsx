@@ -61,17 +61,14 @@ export function ServicesSection () {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <ScrollReveal className="flex justify-center lg:justify-start">
-          <SpotlightTiltCard
-            spotColor="rgba(56,189,248,0.28)"
-            className="w-[280px] border-white/20 shadow-[0_24px_48px_-16px_rgba(0,0,0,0.55)] hover:border-white/35 sm:w-[360px] lg:w-[420px]"
-          >
+          <SpotlightTiltCard glass={false}>
             <Image
               src={phoneSrc}
               alt=""
               width={520}
               height={640}
-              className="h-auto w-full"
               priority
+              className="h-auto w-[240px] drop-shadow-2xl sm:w-[320px] lg:w-[380px]"
             />
           </SpotlightTiltCard>
         </ScrollReveal>
