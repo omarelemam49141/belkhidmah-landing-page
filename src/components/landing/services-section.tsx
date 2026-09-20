@@ -1,0 +1,105 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import Image from 'next/image'
+import {
+  Brush,
+  ChefHat,
+  Sparkles,
+  UserRound,
+  Users,
+  Wind
+} from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { ParallaxBackground } from '@/components/motion/parallax-background'
+import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
+import { SERVICES_PHONE_SRC, SERVICES_SCENE_SRC } from '@/lib/landing/assets'
+import { cn } from '@/lib/utils'
+
+const SERVICE_ITEMS = [
+  { key: 'cleaning' as const, icon: Brush, color: 'text-sky-200', wrap: 'bg-sky-500/20 border-sky-400/30' },
+  { key: 'laundry' as const, icon: Wind, color: 'text-amber-200', wrap: 'bg-amber-500/20 border-amber-400/30' },
+  { key: 'agedCare' as const, icon: Users, color: 'text-emerald-200', wrap: 'bg-emerald-500/20 border-emerald-400/30' },
+  { key: 'cooking' as const, icon: ChefHat, color: 'text-orange-200', wrap: 'bg-warm-orange-500/20 border-warm-orange-400/30' },
+  { key: 'other' as const, icon: UserRound, color: 'text-violet-200', wrap: 'bg-violet-500/20 border-violet-400/30' }
+]
+
+export function ServicesSection () {
+  const t = useTranslations('services')
+  const reduced = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (reduced || !sectionRef.current) return
+    const anim = initFacilityCardsAnimation({ sectionEl: sectionRef.current })
+    return () => anim?.kill()
+  }, [reduced])
+
+  return (
+    <section
+      ref={sectionRef}
+      id="services"
+      className="relative overflow-hidden py-24 text-white sm:py-32"
+    >
+      <ParallaxBackground
+        src={SERVICES_SCENE_SRC}
+        overlayClassName="bg-neutral-950/78"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(14,165,233,0.18)_0%,transparent_55%),radial-gradient(ellipse_at_right,rgba(249,115,22,0.12)_0%,transparent_50%)]" />
+      </ParallaxBackground>
+
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <ScrollReveal className="flex justify-center lg:justify-start">
+          <Image
+            src={SERVICES_PHONE_SRC}
+            alt=""
+            width={520}
+            height={640}
+            className="h-auto w-[280px] rotate-[-12deg] drop-shadow-2xl sm:w-[360px] lg:w-[420px]"
+          />
+        </ScrollReveal>
+
+        <div>
+          <ScrollReveal className="mb-10">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs">
+              <Sparkles className="h-3.5 w-3.5 text-warm-orange-400" />
+              <span>{t('badge')}</span>
+            </div>
+            <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-white')}>{t('title')}</h2>
+            <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-warm-orange-500 to-trust-blue-400" />
+          </ScrollReveal>
+
+          <ul className="space-y-3">
+            {SERVICE_ITEMS.map((item) => {
+              const Icon = item.icon
+              return (
+                <li
+                  key={item.key}
+                  data-facility-card
+                  className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12 [transform-style:preserve-3d]"
+                >
+                  <span
+                    data-facility-stagger
+                    data-facility-media
+                    className={cn(
+                      'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
+                      item.wrap
+                    )}
+                  >
+                    <Icon className={cn('h-6 w-6', item.color)} />
+                  </span>
+                  <span data-facility-stagger className="text-lg font-semibold tracking-tight">
+                    {t(item.key)}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}

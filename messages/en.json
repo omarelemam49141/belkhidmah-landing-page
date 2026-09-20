@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "title": "Belkhidmah — trusted home services",
+    "description": "Professional home care: cleaning, laundry, aged care, and cooking — daily or weekly visits through the app."
+  },
+  "nav": {
+    "primary": "Primary navigation",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "screens": "Screens",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "download": "Download",
+    "openMenu": "Open menu",
+    "menuTitle": "Menu"
+  },
+  "hero": {
+    "badge": "Trusted home care",
+    "title": "Belkhidmah Home Care",
+    "subtitle": "Simple, practical, and reliable",
+    "description": "Professional home services at a fair cost.",
+    "ctaPrimary": "Download",
+    "ctaSecondary": "Learn more"
+  },
+  "about": {
+    "badge": "About",
+    "title": "Welcome to Belkhidmah",
+    "body": "We provide the home services families need — cleaning, organizing, cooking, laundry, ironing, and more. Visits are daily or weekly, with agreed hours, delivered by trained staff with care and accuracy."
+  },
+  "services": {
+    "badge": "Services",
+    "title": "Excellent services.",
+    "cleaning": "Cleaning",
+    "laundry": "Laundry and ironing",
+    "agedCare": "Aged care",
+    "cooking": "Cooking",
+    "other": "Other services"
+  },
+  "screens": {
+    "badge": "The app",
+    "title": "Application screens",
+    "subtitle": "Book a visit, set your address, and manage packages from your phone."
+  },
+  "download": {
+    "badge": "Available now",
+    "title": "Download the application now",
+    "appleAlt": "Download on the App Store",
+    "googleAlt": "Get it on Google Play"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Get in touch",
+    "details": "Contact details",
+    "phone": "Phone",
+    "address": "Address",
+    "mapPlaceholder": "Map coming soon"
+  },
+  "footer": {
+    "brand": "Belkhidmah",
+    "tagline": "Trusted home services",
+    "mission": "Trained staff for cleaning, cooking, laundry, and home care — booked in a few taps.",
+    "copyright": "© {year} Belkhidmah. All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "legal": {
+    "badge": "Legal",
+    "privacyTitle": "Privacy Policy",
+    "backHome": "Back home",
+    "body": "Belkhidmah respects your privacy. We collect only what we need to deliver home services (such as name, mobile number, and address) to process bookings and improve the app.\n\nWe do not sell your data. Limited information may be shared with operations and payment providers solely to fulfill a request.\n\nYou may ask us to correct or delete your data through the contact channels on this site.\n\nThis is a starter policy and will be replaced by the official legal text."
+  }
+}

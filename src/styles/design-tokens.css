@@ -1,0 +1,57 @@
+:root {
+  --trust-blue-50: oklch(0.96 0.02 220);
+  --trust-blue-100: oklch(0.92 0.04 220);
+  --trust-blue-200: oklch(0.84 0.06 220);
+  --trust-blue-300: oklch(0.72 0.08 220);
+  --trust-blue-400: oklch(0.62 0.10 220);
+  --trust-blue-500: oklch(0.55 0.12 220);
+  --trust-blue-600: oklch(0.48 0.14 220);
+  --trust-blue-700: oklch(0.42 0.16 220);
+  --trust-blue-800: oklch(0.35 0.14 220);
+  --trust-blue-900: oklch(0.28 0.12 220);
+
+  --warm-orange-50: oklch(0.96 0.03 35);
+  --warm-orange-100: oklch(0.92 0.05 35);
+  --warm-orange-200: oklch(0.86 0.08 35);
+  --warm-orange-300: oklch(0.78 0.12 35);
+  --warm-orange-400: oklch(0.72 0.14 35);
+  --warm-orange-500: oklch(0.68 0.15 35);
+  --warm-orange-600: oklch(0.62 0.16 35);
+  --warm-orange-700: oklch(0.55 0.16 35);
+  --warm-orange-800: oklch(0.48 0.14 35);
+  --warm-orange-900: oklch(0.42 0.12 35);
+
+  --impact-green-50: oklch(0.96 0.02 155);
+  --impact-green-100: oklch(0.92 0.04 155);
+  --impact-green-200: oklch(0.84 0.06 155);
+  --impact-green-300: oklch(0.72 0.08 155);
+  --impact-green-400: oklch(0.64 0.10 155);
+  --impact-green-500: oklch(0.58 0.12 155);
+  --impact-green-600: oklch(0.52 0.14 155);
+  --impact-green-700: oklch(0.46 0.14 155);
+  --impact-green-800: oklch(0.38 0.12 155);
+  --impact-green-900: oklch(0.32 0.10 155);
+
+  --neutral-50: oklch(0.98 0.01 220);
+  --neutral-100: oklch(0.96 0.01 220);
+  --neutral-200: oklch(0.92 0.02 220);
+  --neutral-300: oklch(0.84 0.02 220);
+  --neutral-400: oklch(0.72 0.02 220);
+  --neutral-500: oklch(0.62 0.02 220);
+  --neutral-600: oklch(0.52 0.02 220);
+  --neutral-700: oklch(0.42 0.02 220);
+  --neutral-800: oklch(0.32 0.02 220);
+  --neutral-900: oklch(0.22 0.02 220);
+  --neutral-950: oklch(0.15 0.02 220);
+
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-tajawal), var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
