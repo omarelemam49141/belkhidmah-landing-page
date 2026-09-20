@@ -54,6 +54,7 @@
     "details": "بيانات التواصل",
     "phone": "الهاتف",
     "address": "العنوان",
+    "mapTitle": "موقع بالخدمة على خرائط Google",
     "mapPlaceholder": "الخريطة ستُضاف هنا"
   },
   "footer": {

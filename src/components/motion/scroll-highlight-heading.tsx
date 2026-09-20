@@ -21,10 +21,10 @@ function graphemes (value: string): string[] {
 }
 
 function splitHighlightText (text: string, byWord: boolean): HighlightPart[] {
-  return text.split(/(\s+)/).flatMap((part) => {
+  return text.split(/(\s+)/).flatMap((part): HighlightPart[] => {
     if (!part) return []
-    if (/^\s+$/.test(part)) return [{ type: 'space' as const, value: part }]
-    return [{ type: 'word' as const, chars: byWord ? [part] : graphemes(part) }]
+    if (/^\s+$/.test(part)) return [{ type: 'space', value: part }]
+    return [{ type: 'word', chars: byWord ? [part] : graphemes(part) }]
   })
 }
 

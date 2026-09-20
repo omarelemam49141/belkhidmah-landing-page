@@ -17,7 +17,7 @@ export function ScrollLineReveal ({
 }) {
   const text = typeof children === 'string' ? children : String(children)
   const reduced = useReducedMotion()
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     if (reduced || !ref.current) return

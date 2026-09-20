@@ -54,6 +54,7 @@
     "details": "Contact details",
     "phone": "Phone",
     "address": "Address",
+    "mapTitle": "Belkhidmah location on Google Maps",
     "mapPlaceholder": "Map coming soon"
   },
   "footer": {
