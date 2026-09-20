@@ -53,19 +53,19 @@ export function ScreensSection () {
       <div ref={wrapperRef} className="relative z-10 min-h-0 w-full flex-1 overflow-hidden">
         <div
           ref={innerRef}
-          className="flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-stretch md:gap-10 md:px-8 lg:px-16"
+          className="flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-center md:gap-10 md:px-8 lg:px-16"
         >
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="flex h-auto max-h-full min-h-0 shrink-0 items-center rounded-[2.2rem] border border-brand-blush/80 bg-white p-2 shadow-xl shadow-brand-lilac/20 sm:p-3 md:h-full md:p-2.5"
+              className="flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-brand-blush/80 bg-white p-2 shadow-xl shadow-brand-lilac/20 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5"
             >
               <Image
                 src={src}
                 alt=""
                 width={280}
                 height={560}
-                className="h-auto w-[220px] sm:w-[240px] md:h-full md:min-h-0 md:w-auto md:max-h-full md:object-contain"
+                className="h-auto w-full object-contain md:max-h-[calc(100svh-19rem)]"
                 priority={index === 0}
               />
             </div>

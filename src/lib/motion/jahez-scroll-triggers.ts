@@ -14,58 +14,66 @@ export function initHorizontalPinScroll(options: {
   const { sectionEl, wrapperEl, innerEl, isRtl } = options
   if (window.innerWidth < 768) return null
 
-  const measureTravel = () => {
-    const totalScrollWidth = innerEl.scrollWidth
-    const viewportWidth = wrapperEl.clientWidth || window.innerWidth
-    return Math.max(0, totalScrollWidth - viewportWidth)
+  let tl: gsap.core.Timeline | null = null
+  let killed = false
+  const cleanups: Array<() => void> = []
+
+  const measureTravel = () =>
+    Math.max(0, innerEl.scrollWidth - (wrapperEl.clientWidth || window.innerWidth))
+
+  const create = () => {
+    if (killed || tl) return
+    const travel = measureTravel()
+    if (travel <= 0) return
+
+    const scrollDistance = travel * 1.75 + window.innerHeight * 0.35
+    gsap.set(innerEl, { force3D: true, willChange: 'transform', x: 0 })
+
+    tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionEl,
+        start: 'top top',
+        end: `+=${scrollDistance}`,
+        pin: sectionEl,
+        pinSpacing: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 0,
+        fastScrollEnd: false
+      }
+    })
+
+    tl.to(innerEl, {
+      x: isRtl ? travel : -travel,
+      ease: 'none',
+      force3D: true
+    })
+
+    ScrollTrigger.refresh()
   }
 
-  const travel = measureTravel()
-  if (travel <= 0) return null
+  const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
+  requestAnimationFrame(() => requestAnimationFrame(create))
 
-  const scrollDistance = () => measureTravel() * 1.75 + window.innerHeight * 0.35
-
-  gsap.set(innerEl, { force3D: true, willChange: 'transform' })
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: sectionEl,
-      start: 'top top',
-      end: () => `+=${scrollDistance()}`,
-      pin: sectionEl,
-      pinSpacing: true,
-      scrub: 1,
-      invalidateOnRefresh: true,
-      anticipatePin: 0,
-      fastScrollEnd: false
+  innerEl.querySelectorAll('img').forEach((img) => {
+    const onLoad = () => {
+      if (tl) ScrollTrigger.refresh()
+      else create()
     }
-  })
-
-  tl.to(innerEl, {
-    x: () => {
-      const nextTravel = measureTravel()
-      return isRtl ? nextTravel : -nextTravel
-    },
-    ease: 'none',
-    force3D: true
-  })
-
-  const refreshId = window.setTimeout(() => {
-    ScrollTrigger.refresh()
-  }, 300)
-
-  const refresh = () => ScrollTrigger.refresh()
-  const images = Array.from(innerEl.querySelectorAll('img'))
-  images.forEach((img) => {
-    if (!img.complete) img.addEventListener('load', refresh)
+    if (!img.complete) {
+      img.addEventListener('load', onLoad)
+      cleanups.push(() => img.removeEventListener('load', onLoad))
+    }
   })
 
   return {
     kill: () => {
-      window.clearTimeout(refreshId)
-      images.forEach((img) => img.removeEventListener('load', refresh))
-      tl.scrollTrigger?.kill()
-      tl.kill()
+      killed = true
+      retryIds.forEach((id) => window.clearTimeout(id))
+      cleanups.forEach((fn) => fn())
+      tl?.scrollTrigger?.kill()
+      tl?.kill()
+      gsap.set(innerEl, { clearProps: 'transform,willChange' })
     }
   }
 }

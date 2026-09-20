@@ -20,9 +20,9 @@ export function HeroSection () {
       <ParallaxBackground
         src={HERO_SCENE_SRC}
         priority
-        overlayClassName="bg-linear-to-b from-neutral-950/88 via-brand-magenta/70 to-neutral-950/92"
+        overlayClassName="bg-linear-to-b from-overlay-ink/90 via-overlay-mid/78 to-overlay-ink/94"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(145,40,141,0.32)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(75,109,148,0.28)_0%,transparent_70%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-28 sm:px-6 sm:py-32 lg:grid-cols-2 lg:gap-12 lg:px-8">

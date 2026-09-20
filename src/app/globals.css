@@ -31,6 +31,9 @@
   --color-brand-lilac: var(--brand-lilac);
   --color-brand-blush: var(--brand-blush);
   --color-brand-white: var(--brand-white);
+  --color-overlay-ink: var(--overlay-ink);
+  --color-overlay-mid: var(--overlay-mid);
+  --color-glow-cool: var(--glow-cool);
   --color-trust-blue-50: var(--trust-blue-50);
   --color-trust-blue-100: var(--trust-blue-100);
   --color-trust-blue-200: var(--trust-blue-200);
