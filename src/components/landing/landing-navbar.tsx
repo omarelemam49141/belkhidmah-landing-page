@@ -189,7 +189,7 @@ export function LandingNavbar () {
             <MotionButton
               asChild
               size="sm"
-              className="rounded-full bg-linear-to-r from-brand-pink to-brand-magenta px-3 text-white shadow-lg shadow-brand-pink/30 hover:from-brand-magenta hover:to-brand-pink sm:px-4"
+              className="rounded-full bg-linear-to-r from-brand-pink to-brand-magenta px-3 text-white shadow-lg shadow-overlay-ink/40 hover:from-brand-magenta hover:to-brand-pink sm:px-4"
             >
               <a href={homeSectionHref('download', pathname, locale)} className="flex items-center gap-1.5 font-semibold">
                 <Download className="h-4 w-4" />

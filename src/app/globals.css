@@ -157,7 +157,7 @@
   .pin-spacer:has(#screens) {
     background-image: linear-gradient(
       to bottom,
-      rgb(245 194 223 / 0.45),
+      rgb(22 32 51 / 0.12),
       #ffffff,
       var(--neutral-100)
     );

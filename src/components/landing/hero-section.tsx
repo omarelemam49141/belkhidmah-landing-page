@@ -28,7 +28,7 @@ export function HeroSection () {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-28 sm:px-6 sm:py-32 lg:grid-cols-2 lg:gap-12 lg:px-8">
         <div className="order-2 flex justify-center lg:order-1">
           <FadeIn delay={0.2} className="relative">
-            <div className="absolute inset-8 rounded-[3rem] bg-brand-lilac/40 blur-3xl" aria-hidden />
+            <div className="absolute inset-8 rounded-[3rem] bg-glow-cool/35 blur-3xl" aria-hidden />
             <div className="relative z-10 animate-float">
               <SpotlightTiltCard glass={false}>
                 <PhoneMockup src={phoneSrc} priority />
@@ -41,7 +41,7 @@ export function HeroSection () {
           <FadeIn>
             <BrandMark
               size={72}
-              className="mx-auto mb-6 drop-shadow-lg lg:mx-0"
+              className="mx-auto mb-6 drop-shadow-[0_6px_18px_rgba(0,0,0,0.75)] lg:mx-0"
             />
           </FadeIn>
 
@@ -62,7 +62,7 @@ export function HeroSection () {
             <MotionButton
               asChild
               size="lg"
-              className="group relative overflow-hidden bg-linear-to-r from-brand-pink via-brand-magenta to-brand-pink px-8 py-6 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(219,44,145,0.45)] transition-all duration-300 hover:shadow-[0_15px_30px_-5px_rgba(145,40,141,0.55)]"
+              className="group relative overflow-hidden bg-linear-to-r from-brand-pink via-brand-magenta to-brand-pink px-8 py-6 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(11,19,36,0.55)] transition-all duration-300 hover:shadow-[0_15px_30px_-5px_rgba(11,19,36,0.7)]"
             >
               <a href="#download" className="flex items-center gap-2">
                 <span>{t('ctaPrimary')}</span>

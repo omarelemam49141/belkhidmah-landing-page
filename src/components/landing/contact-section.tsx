@@ -3,9 +3,13 @@
 import { MapPin, Phone, Sparkles } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { PLACEHOLDER_CONTACT, googleMapsEmbedSrc } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
+
+const CONTACT_CARD_3D =
+  'rounded-2xl border border-glow-cool/40 bg-white shadow-[0_2px_3px_rgba(11,19,36,0.06),0_10px_24px_-6px_rgba(75,109,148,0.32),0_28px_56px_-18px_rgba(11,19,36,0.22),inset_0_1px_0_rgba(255,255,255,1)]'
 
 export function ContactSection () {
   const t = useTranslations('contact')

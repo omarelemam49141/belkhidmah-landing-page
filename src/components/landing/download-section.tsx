@@ -35,7 +35,7 @@ export function DownloadSection () {
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <FadeIn>
-          <BrandMark size={80} className="mx-auto mb-6 drop-shadow-lg" />
+          <BrandMark size={80} className="mx-auto mb-6 drop-shadow-[0_6px_18px_rgba(0,0,0,0.75)]" />
         </FadeIn>
 
         <FadeIn delay={0.15}>
