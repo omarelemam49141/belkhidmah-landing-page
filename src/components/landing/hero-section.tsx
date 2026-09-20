@@ -20,15 +20,15 @@ export function HeroSection () {
       <ParallaxBackground
         src={HERO_SCENE_SRC}
         priority
-        overlayClassName="bg-linear-to-b from-neutral-950/88 via-trust-blue-900/70 to-neutral-950/92"
+        overlayClassName="bg-linear-to-b from-neutral-950/88 via-brand-magenta/70 to-neutral-950/92"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,116,144,0.22)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(145,40,141,0.32)_0%,transparent_70%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-28 sm:px-6 sm:py-32 lg:grid-cols-2 lg:gap-12 lg:px-8">
         <div className="order-2 flex justify-center lg:order-1">
           <FadeIn delay={0.2} className="relative">
-            <div className="absolute inset-8 rounded-[3rem] bg-trust-blue-400/30 blur-3xl" aria-hidden />
+            <div className="absolute inset-8 rounded-[3rem] bg-brand-lilac/40 blur-3xl" aria-hidden />
             <div className="relative z-10 animate-float">
               <SpotlightTiltCard glass={false}>
                 <Image
@@ -69,7 +69,7 @@ export function HeroSection () {
             <MotionButton
               asChild
               size="lg"
-              className="group relative overflow-hidden bg-linear-to-r from-warm-orange-500 via-warm-orange-600 to-warm-orange-500 px-8 py-6 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(234,88,12,0.4)] transition-all duration-300 hover:shadow-[0_15px_30px_-5px_rgba(234,88,12,0.6)]"
+              className="group relative overflow-hidden bg-linear-to-r from-brand-pink via-brand-magenta to-brand-pink px-8 py-6 text-base font-bold text-white shadow-[0_10px_25px_-5px_rgba(219,44,145,0.45)] transition-all duration-300 hover:shadow-[0_15px_30px_-5px_rgba(145,40,141,0.55)]"
             >
               <a href="#download" className="flex items-center gap-2">
                 <span>{t('ctaPrimary')}</span>

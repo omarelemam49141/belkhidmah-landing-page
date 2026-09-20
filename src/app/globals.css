@@ -79,25 +79,25 @@
 }
 
 :root {
-  --background: var(--neutral-50);
+  --background: var(--brand-white);
   --foreground: var(--neutral-900);
-  --card: oklch(1 0 0);
+  --card: var(--brand-white);
   --card-foreground: var(--neutral-900);
-  --popover: oklch(1 0 0);
+  --popover: var(--brand-white);
   --popover-foreground: var(--neutral-900);
-  --primary: var(--trust-blue-600);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: var(--warm-orange-500);
-  --secondary-foreground: var(--neutral-900);
+  --primary: var(--brand-magenta);
+  --primary-foreground: var(--brand-white);
+  --secondary: var(--brand-pink);
+  --secondary-foreground: var(--brand-white);
   --muted: var(--neutral-100);
   --muted-foreground: var(--neutral-600);
-  --accent: var(--warm-orange-100);
-  --accent-foreground: var(--neutral-900);
+  --accent: var(--brand-blush);
+  --accent-foreground: var(--brand-magenta);
   --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.98 0 0);
+  --destructive-foreground: var(--brand-white);
   --border: var(--neutral-200);
   --input: var(--neutral-200);
-  --ring: var(--trust-blue-500);
+  --ring: var(--brand-pink);
   --radius: 0.75rem;
 }
 
@@ -130,9 +130,9 @@
   .bg-gradient-hero {
     background-image: linear-gradient(
       135deg,
-      var(--trust-blue-700) 0%,
-      var(--trust-blue-600) 50%,
-      var(--trust-blue-500) 100%
+      var(--brand-magenta) 0%,
+      var(--brand-lilac) 50%,
+      var(--brand-pink) 100%
     );
   }
 
@@ -154,7 +154,7 @@
   .pin-spacer:has(#screens) {
     background-image: linear-gradient(
       to bottom,
-      rgb(255 251 235 / 0.4),
+      rgb(245 194 223 / 0.45),
       #ffffff,
       var(--neutral-100)
     );

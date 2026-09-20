@@ -25,11 +25,11 @@ import {
 import { cn } from '@/lib/utils'
 
 const SERVICE_ITEMS = [
-  { key: 'cleaning' as const, icon: Brush, color: 'text-sky-200', wrap: 'bg-sky-500/20 border-sky-400/30' },
-  { key: 'laundry' as const, icon: Wind, color: 'text-amber-200', wrap: 'bg-amber-500/20 border-amber-400/30' },
-  { key: 'agedCare' as const, icon: Users, color: 'text-emerald-200', wrap: 'bg-emerald-500/20 border-emerald-400/30' },
-  { key: 'cooking' as const, icon: ChefHat, color: 'text-orange-200', wrap: 'bg-warm-orange-500/20 border-warm-orange-400/30' },
-  { key: 'other' as const, icon: UserRound, color: 'text-violet-200', wrap: 'bg-violet-500/20 border-violet-400/30' }
+  { key: 'cleaning' as const, icon: Brush, color: 'text-brand-blush', wrap: 'bg-brand-magenta/30 border-brand-lilac/40' },
+  { key: 'laundry' as const, icon: Wind, color: 'text-brand-blush', wrap: 'bg-brand-pink/25 border-brand-pink/40' },
+  { key: 'agedCare' as const, icon: Users, color: 'text-white', wrap: 'bg-brand-lilac/35 border-brand-blush/35' },
+  { key: 'cooking' as const, icon: ChefHat, color: 'text-brand-blush', wrap: 'bg-brand-pink/20 border-brand-lilac/40' },
+  { key: 'other' as const, icon: UserRound, color: 'text-white', wrap: 'bg-white/12 border-brand-blush/40' }
 ]
 
 export function ServicesSection () {

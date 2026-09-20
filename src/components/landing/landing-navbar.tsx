@@ -183,13 +183,13 @@ export function LandingNavbar () {
             {!reduced && (
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-warm-orange-500/45 blur-lg animate-nav-cta-glow"
+                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-brand-pink/50 blur-lg animate-nav-cta-glow"
               />
             )}
             <MotionButton
               asChild
               size="sm"
-              className="rounded-full bg-linear-to-r from-warm-orange-500 to-warm-orange-600 px-3 text-white shadow-lg shadow-warm-orange-500/25 hover:from-warm-orange-600 hover:to-warm-orange-700 sm:px-4"
+              className="rounded-full bg-linear-to-r from-brand-pink to-brand-magenta px-3 text-white shadow-lg shadow-brand-pink/30 hover:from-brand-magenta hover:to-brand-pink sm:px-4"
             >
               <a href={homeSectionHref('download', pathname, locale)} className="flex items-center gap-1.5 font-semibold">
                 <Download className="h-4 w-4" />

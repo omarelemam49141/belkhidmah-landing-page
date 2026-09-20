@@ -30,7 +30,7 @@ export function DownloadSection () {
         src={DOWNLOAD_SCENE_SRC}
         overlayClassName="bg-neutral-950/85"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.18)_0%,rgba(14,165,233,0.15)_40%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(219,44,145,0.22)_0%,rgba(145,40,141,0.18)_40%,transparent_75%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
