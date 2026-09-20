@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
+import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
@@ -31,14 +31,7 @@ export function HeroSection () {
             <div className="absolute inset-8 rounded-[3rem] bg-brand-lilac/40 blur-3xl" aria-hidden />
             <div className="relative z-10 animate-float">
               <SpotlightTiltCard glass={false}>
-                <Image
-                  src={phoneSrc}
-                  alt=""
-                  width={420}
-                  height={840}
-                  priority
-                  className="h-auto w-[240px] drop-shadow-2xl sm:w-[280px] lg:w-[320px]"
-                />
+                <PhoneMockup src={phoneSrc} priority />
               </SpotlightTiltCard>
             </div>
           </FadeIn>

@@ -14,12 +14,16 @@ export function initHorizontalPinScroll(options: {
   const { sectionEl, wrapperEl, innerEl, isRtl } = options
   if (window.innerWidth < 768) return null
 
-  const totalScrollWidth = innerEl.scrollWidth
-  const viewportWidth = wrapperEl.clientWidth || window.innerWidth
-  const travel = Math.max(0, totalScrollWidth - viewportWidth)
+  const measureTravel = () => {
+    const totalScrollWidth = innerEl.scrollWidth
+    const viewportWidth = wrapperEl.clientWidth || window.innerWidth
+    return Math.max(0, totalScrollWidth - viewportWidth)
+  }
+
+  const travel = measureTravel()
   if (travel <= 0) return null
 
-  const scrollDistance = travel * 1.75 + window.innerHeight * 0.35
+  const scrollDistance = () => measureTravel() * 1.75 + window.innerHeight * 0.35
 
   gsap.set(innerEl, { force3D: true, willChange: 'transform' })
 
@@ -27,18 +31,21 @@ export function initHorizontalPinScroll(options: {
     scrollTrigger: {
       trigger: sectionEl,
       start: 'top top',
-      end: () => `+=${scrollDistance}`,
+      end: () => `+=${scrollDistance()}`,
       pin: sectionEl,
       pinSpacing: true,
       scrub: 1,
       invalidateOnRefresh: true,
-      anticipatePin: 1,
+      anticipatePin: 0,
       fastScrollEnd: false
     }
   })
 
   tl.to(innerEl, {
-    x: isRtl ? travel : -travel,
+    x: () => {
+      const nextTravel = measureTravel()
+      return isRtl ? nextTravel : -nextTravel
+    },
     ease: 'none',
     force3D: true
   })
@@ -47,9 +54,16 @@ export function initHorizontalPinScroll(options: {
     ScrollTrigger.refresh()
   }, 300)
 
+  const refresh = () => ScrollTrigger.refresh()
+  const images = Array.from(innerEl.querySelectorAll('img'))
+  images.forEach((img) => {
+    if (!img.complete) img.addEventListener('load', refresh)
+  })
+
   return {
     kill: () => {
       window.clearTimeout(refreshId)
+      images.forEach((img) => img.removeEventListener('load', refresh))
       tl.scrollTrigger?.kill()
       tl.kill()
     }

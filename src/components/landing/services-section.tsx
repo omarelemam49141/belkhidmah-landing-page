@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Image from 'next/image'
 import {
   Brush,
   ChefHat,
@@ -11,6 +10,7 @@ import {
   Wind
 } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
+import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
