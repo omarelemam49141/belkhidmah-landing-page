@@ -56,6 +56,7 @@ export default async function LocaleLayout ({
     >
       <body className={`${cairo.className} font-sans antialiased min-h-screen`}>
         <NextIntlClientProvider messages={messages}>
+          <BrandLoader />
           {children}
         </NextIntlClientProvider>
       </body>

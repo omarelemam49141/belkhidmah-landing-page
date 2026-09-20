@@ -53,3 +53,20 @@ export const PLACEHOLDER_CONTACT = {
   addressAr: 'المملكة العربية السعودية — العنوان سيُضاف لاحقًا',
   addressEn: 'Kingdom of Saudi Arabia — address coming soon'
 } as const
+
+const GOOGLE_MAPS_CID = '17205670262855804534'
+const GOOGLE_MAPS_LL = '24.784423,46.68234'
+
+export function googleMapsEmbedSrc (locale: string) {
+  const hl = locale === 'ar' ? 'ar' : 'en'
+  const params = new URLSearchParams({
+    ll: GOOGLE_MAPS_LL,
+    z: '15',
+    t: 'm',
+    hl,
+    gl: 'EG',
+    output: 'embed',
+    cid: GOOGLE_MAPS_CID
+  })
+  return `https://www.google.com/maps?${params.toString()}`
+}

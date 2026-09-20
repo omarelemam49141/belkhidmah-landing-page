@@ -221,6 +221,24 @@
   }
 }
 
+@keyframes ep-speedlines {
+  0% {
+    stroke-dashoffset: 150;
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.7;
+  }
+  48% {
+    stroke-dashoffset: 0;
+    opacity: 0.7;
+  }
+  100% {
+    stroke-dashoffset: -150;
+    opacity: 0;
+  }
+}
+
 @keyframes ep-wordmark-in {
   from {
     opacity: 0;
@@ -243,6 +261,11 @@
   animation: ep-streak-draw 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
 }
 
+.ep-loader-speedlines {
+  stroke-dasharray: 150;
+  animation: ep-speedlines 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
 .ep-loader-wordmark {
   animation: ep-wordmark-in 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) 0.12s both;
 }
@@ -252,6 +275,7 @@
   .animate-float,
   .ep-loader-stride,
   .ep-loader-streak,
+  .ep-loader-speedlines,
   .ep-loader-wordmark {
     animation: none !important;
     opacity: 1;

@@ -4,7 +4,7 @@ import { MapPin, Phone, Sparkles } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
-import { PLACEHOLDER_CONTACT } from '@/lib/landing/assets'
+import { PLACEHOLDER_CONTACT, googleMapsEmbedSrc } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
 
 export function ContactSection () {
@@ -60,9 +60,15 @@ export function ContactSection () {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="flex h-full min-h-[280px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center shadow-inner">
-              <MapPin className="mb-3 h-10 w-10 text-trust-blue-400" />
-              <p className="text-sm font-medium text-slate-500">{t('mapPlaceholder')}</p>
+            <div className="relative h-full min-h-80 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md shadow-slate-100">
+              <iframe
+                title={t('mapTitle')}
+                src={googleMapsEmbedSrc(locale)}
+                className="absolute inset-0 h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </ScrollReveal>
         </div>

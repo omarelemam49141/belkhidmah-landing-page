@@ -17,16 +17,9 @@ import { cn } from '@/lib/utils'
 const STORE_LINK_BASE =
   'inline-flex h-14 shrink-0 items-center justify-center rounded-xl shadow-lg transition-transform duration-200 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50'
 
-const APPLE_LINK_CLASS = cn(STORE_LINK_BASE, 'w-[11.75rem] sm:w-[12.5rem]')
+const STORE_LINK_CLASS = cn(STORE_LINK_BASE, 'w-[11.75rem] sm:w-[12.5rem]')
 
-const GOOGLE_LINK_CLASS = cn(
-  STORE_LINK_BASE,
-  'w-[11.75rem] bg-white px-4 ring-1 ring-black/5 sm:w-[12.5rem]'
-)
-
-const APPLE_IMAGE_CLASS = 'h-14 w-auto max-w-full rounded-xl object-contain object-center'
-
-const GOOGLE_IMAGE_CLASS = 'h-9 w-auto max-w-full object-contain object-center'
+const STORE_IMAGE_CLASS = 'h-14 w-auto max-w-full rounded-xl object-contain object-center'
 
 export function DownloadSection () {
   const t = useTranslations('download')
