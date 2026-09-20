@@ -8,7 +8,7 @@ import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { initHorizontalPinScroll } from '@/lib/motion/jahez-scroll-triggers'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
-import { APP_SCREEN_SRCS } from '@/lib/landing/assets'
+import { appScreenSrcs } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
 
 export function ScreensSection () {
@@ -60,9 +60,9 @@ export function ScreensSection () {
           ref={innerRef}
           className="flex flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-end md:gap-10 md:px-8 lg:px-16"
         >
-          {APP_SCREEN_SRCS.map((src, index) => (
+          {appScreenSrcs(locale).map((src, index) => (
             <div
-              key={src}
+              key={`${src}-${index}`}
               className="shrink-0 rounded-[2.2rem] border border-slate-200/80 bg-white p-3 shadow-xl shadow-slate-200/80"
             >
               <Image

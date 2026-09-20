@@ -49,22 +49,22 @@ export function DownloadSection () {
         </FadeIn>
 
         <FadeIn delay={0.3} className="flex flex-wrap items-stretch justify-center gap-4 sm:gap-6">
-          <a href={STORE_LINKS.apple} className={APPLE_LINK_CLASS}>
+          <a href={STORE_LINKS.apple} className={STORE_LINK_CLASS}>
             <Image
               src={APPLE_STORE_BTN_SRC}
               alt={t('appleAlt')}
               width={808}
               height={309}
-              className={APPLE_IMAGE_CLASS}
+              className={STORE_IMAGE_CLASS}
             />
           </a>
-          <a href={STORE_LINKS.google} className={GOOGLE_LINK_CLASS}>
+          <a href={STORE_LINKS.google} className={STORE_LINK_CLASS}>
             <Image
               src={GOOGLE_PLAY_BTN_SRC}
               alt={t('googleAlt')}
-              width={448}
-              height={150}
-              className={GOOGLE_IMAGE_CLASS}
+              width={667}
+              height={199}
+              className={STORE_IMAGE_CLASS}
             />
           </a>
         </FadeIn>

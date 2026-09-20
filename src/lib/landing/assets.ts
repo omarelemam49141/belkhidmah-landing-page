@@ -26,13 +26,18 @@ export const SERVICES_PHONE_SRC = SERVICES_PHONE_SRC_EN
 export const APPLE_STORE_BTN_SRC = localAsset('/images/stores-section/apple-store.png')
 export const GOOGLE_PLAY_BTN_SRC = localAsset('/images/stores-section/google-play.png')
 
-export const APP_SCREEN_SRCS = [
-  localAsset('/images/app-screen-section/app-screen-section-img-1.png'),
-  localAsset('/images/app-screen-section/app-screen-section-img-2.png'),
-  localAsset('/images/app-screen-section/app-screen-section-img-3.png'),
-  localAsset('/images/app-screen-section/app-screen-section-img-4.png'),
-  localAsset('/images/app-screen-section/app-screen-section-img-5.png')
-] as const
+export const APP_SCREEN_SRC_AR = localAsset('/images/app-screen-section/app-screen-section-img-1.png')
+export const APP_SCREEN_SRC_EN = localAsset('/images/app-screen-section/app-screen-section-img-1-en.png')
+export const APP_SCREEN_REPEAT_COUNT = 8
+
+export function appScreenSrc (locale: string) {
+  return locale === 'ar' ? APP_SCREEN_SRC_AR : APP_SCREEN_SRC_EN
+}
+
+export function appScreenSrcs (locale: string) {
+  const src = appScreenSrc(locale)
+  return Array.from({ length: APP_SCREEN_REPEAT_COUNT }, () => src)
+}
 
 export const HERO_SCENE_SRC =
   'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=2400&q=80'
