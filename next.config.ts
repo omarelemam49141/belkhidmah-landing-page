@@ -18,9 +18,11 @@ const nextConfig: NextConfig = {
 }
 
 if (isGithubPages) {
+  const pagesBasePath = '/belkhidmah-landing-page'
+  process.env.NEXT_PUBLIC_BASE_PATH = pagesBasePath
   nextConfig.output = 'export'
   nextConfig.trailingSlash = true
-  nextConfig.basePath = '/belkhidmah-landing-page'
+  nextConfig.basePath = pagesBasePath
 }
 
 export default withNextIntl(nextConfig)

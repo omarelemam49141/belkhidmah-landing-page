@@ -1,14 +1,20 @@
-export const HERO_PHONE_SRC = '/images/hero-section/hero-section-phone-img.png'
-export const SERVICES_PHONE_SRC = '/images/services-section/services-sections-img.png'
-export const APPLE_STORE_BTN_SRC = '/images/stores-section/apple-store.png'
-export const GOOGLE_PLAY_BTN_SRC = '/images/stores-section/google-play.png'
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
+function localAsset (path: string) {
+  return `${BASE_PATH}${path}`
+}
+
+export const HERO_PHONE_SRC = localAsset('/images/hero-section/hero-section-phone-img.png')
+export const SERVICES_PHONE_SRC = localAsset('/images/services-section/services-sections-img.png')
+export const APPLE_STORE_BTN_SRC = localAsset('/images/stores-section/apple-store.png')
+export const GOOGLE_PLAY_BTN_SRC = localAsset('/images/stores-section/google-play.png')
 
 export const APP_SCREEN_SRCS = [
-  '/images/app-screen-section/app-screen-section-img-1.png',
-  '/images/app-screen-section/app-screen-section-img-2.png',
-  '/images/app-screen-section/app-screen-section-img-3.png',
-  '/images/app-screen-section/app-screen-section-img-4.png',
-  '/images/app-screen-section/app-screen-section-img-5.png'
+  localAsset('/images/app-screen-section/app-screen-section-img-1.png'),
+  localAsset('/images/app-screen-section/app-screen-section-img-2.png'),
+  localAsset('/images/app-screen-section/app-screen-section-img-3.png'),
+  localAsset('/images/app-screen-section/app-screen-section-img-4.png'),
+  localAsset('/images/app-screen-section/app-screen-section-img-5.png')
 ] as const
 
 export const HERO_SCENE_SRC =
