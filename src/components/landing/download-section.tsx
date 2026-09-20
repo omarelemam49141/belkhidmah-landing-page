@@ -39,11 +39,11 @@ export function DownloadSection () {
           <BrandMark size={80} className="mx-auto mb-6 drop-shadow-[0_6px_18px_rgba(0,0,0,0.75)]" />
         </FadeIn>
 
-        <FadeIn delay={0.15}>
-          <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'mb-10 text-balance text-white')}>
-            {t('title')}
-          </h2>
-        </FadeIn>
+        <ScrollHighlightHeading
+          className={cn(LANDING_SECTION_TITLE_CLASS, 'mb-10 text-balance text-white')}
+        >
+          {t('title')}
+        </ScrollHighlightHeading>
 
         <FadeIn delay={0.3} className="flex flex-wrap items-stretch justify-center gap-4 sm:gap-6">
           <a href={STORE_LINKS.apple} className={STORE_LINK_CLASS}>

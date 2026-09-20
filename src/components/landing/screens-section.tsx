@@ -38,17 +38,23 @@ export function ScreensSection () {
       className="relative flex min-h-svh flex-col bg-white pt-22 pb-10 md:h-svh md:overflow-hidden md:pb-6"
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl shrink-0 px-4 sm:px-6 lg:px-8">
-        <ScrollReveal className="mb-8 text-center sm:mb-10 md:mb-8">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-pink/30 bg-brand-blush/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>{t('badge')}</span>
-          </div>
-          <h2 className={cn(LANDING_SECTION_TITLE_CLASS, 'text-brand-magenta')}>{t('title')}</h2>
-          <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink" />
-          <p className="mx-auto mt-4 max-w-2xl text-base text-neutral-600 sm:text-lg">
-            {t('subtitle')}
-          </p>
-        </ScrollReveal>
+        <div className="mb-8 text-center sm:mb-10 md:mb-8">
+          <ScrollReveal>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand-pink/30 bg-brand-blush/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-sm">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>{t('badge')}</span>
+            </div>
+          </ScrollReveal>
+          <ScrollHighlightHeading className={cn(LANDING_SECTION_TITLE_CLASS, 'text-brand-magenta')}>
+            {t('title')}
+          </ScrollHighlightHeading>
+          <ScrollReveal>
+            <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink" />
+            <p className="mx-auto mt-4 max-w-2xl text-base text-neutral-600 sm:text-lg">
+              {t('subtitle')}
+            </p>
+          </ScrollReveal>
+        </div>
       </div>
 
       <div ref={wrapperRef} className="relative z-10 min-h-0 w-full flex-1 overflow-hidden">
