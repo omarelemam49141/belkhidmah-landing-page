@@ -13,9 +13,9 @@ import { SmoothScroll } from '@/components/motion/smooth-scroll'
 export function LandingPage () {
   return (
     <SmoothScroll>
-      <div className="relative min-h-screen bg-slate-50 text-slate-900 selection:bg-warm-orange-500 selection:text-white">
+      <div className="relative min-h-screen bg-white text-neutral-900 selection:bg-brand-pink selection:text-white">
         <LandingNavbar />
-        <main className="bg-slate-50">
+        <main className="bg-white">
           <HeroSection />
           <AboutSection />
           <ServicesSection />

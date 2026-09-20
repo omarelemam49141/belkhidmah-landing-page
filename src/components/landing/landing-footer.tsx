@@ -15,7 +15,7 @@ export function LandingFooter () {
   const sectionHref = (id: string) => homeSectionHref(id, pathname, locale)
 
   return (
-    <footer className="relative border-t border-neutral-800 bg-neutral-950 text-neutral-300">
+    <footer className="relative border-t border-brand-magenta/35 bg-neutral-950 text-neutral-300">
       <button
         type="button"
         onClick={() => {
@@ -48,27 +48,27 @@ export function LandingFooter () {
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href={sectionHref('about')} className="transition-colors hover:text-warm-orange-400">
+                <a href={sectionHref('about')} className="transition-colors hover:text-brand-pink">
                   {tNav('about')}
                 </a>
               </li>
               <li>
-                <a href={sectionHref('services')} className="transition-colors hover:text-warm-orange-400">
+                <a href={sectionHref('services')} className="transition-colors hover:text-brand-pink">
                   {tNav('services')}
                 </a>
               </li>
               <li>
-                <a href={sectionHref('screens')} className="transition-colors hover:text-warm-orange-400">
+                <a href={sectionHref('screens')} className="transition-colors hover:text-brand-pink">
                   {tNav('screens')}
                 </a>
               </li>
               <li>
-                <a href={sectionHref('contact')} className="transition-colors hover:text-warm-orange-400">
+                <a href={sectionHref('contact')} className="transition-colors hover:text-brand-pink">
                   {tNav('contact')}
                 </a>
               </li>
               <li>
-                <LocaleLink href="/privacy" className="transition-colors hover:text-warm-orange-400">
+                <LocaleLink href="/privacy" className="transition-colors hover:text-brand-pink">
                   {tNav('privacy')}
                 </LocaleLink>
               </li>
