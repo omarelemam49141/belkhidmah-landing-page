@@ -183,7 +183,7 @@ export function LandingNavbar () {
             {!reduced && (
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-brand-pink/50 blur-lg animate-nav-cta-glow"
+                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-glow-cool/45 blur-lg animate-nav-cta-glow"
               />
             )}
             <MotionButton

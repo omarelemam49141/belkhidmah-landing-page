@@ -26,7 +26,7 @@ export function LegalDocumentPage ({
         <LandingNavbar />
         <main className="relative overflow-hidden pb-20 pt-28">
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(145,40,141,0.10)_0%,transparent_55%),radial-gradient(circle_at_90%_20%,rgba(219,44,145,0.08)_0%,transparent_45%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(75,109,148,0.10)_0%,transparent_55%),radial-gradient(circle_at_90%_20%,rgba(11,19,36,0.06)_0%,transparent_45%)]"
             aria-hidden
           />
           <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

@@ -54,9 +54,9 @@ export function ServicesSection () {
     >
       <ParallaxBackground
         src={SERVICES_SCENE_SRC}
-        overlayClassName="bg-linear-to-b from-brand-magenta/45 via-neutral-950/78 to-neutral-950/88"
+        overlayClassName="bg-linear-to-b from-overlay-ink/70 via-overlay-mid/80 to-overlay-ink/90"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(145,40,141,0.28)_0%,transparent_55%),radial-gradient(ellipse_at_right,rgba(219,44,145,0.18)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(75,109,148,0.22)_0%,transparent_55%),radial-gradient(ellipse_at_right,rgba(11,19,36,0.35)_0%,transparent_50%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">

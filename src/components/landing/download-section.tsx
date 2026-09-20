@@ -28,9 +28,9 @@ export function DownloadSection () {
     <section id="download" className="relative overflow-hidden py-28 text-white sm:py-36">
       <ParallaxBackground
         src={DOWNLOAD_SCENE_SRC}
-        overlayClassName="bg-linear-to-b from-brand-magenta/45 via-neutral-950/80 to-neutral-950/90"
+        overlayClassName="bg-linear-to-b from-overlay-ink/70 via-overlay-mid/82 to-overlay-ink/92"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(219,44,145,0.22)_0%,rgba(145,40,141,0.18)_40%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(75,109,148,0.2)_0%,rgba(11,19,36,0.28)_40%,transparent_75%)]" />
       </ParallaxBackground>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
