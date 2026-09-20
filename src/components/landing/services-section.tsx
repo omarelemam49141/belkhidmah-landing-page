@@ -10,13 +10,18 @@ import {
   Users,
   Wind
 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
-import { SERVICES_PHONE_SRC, SERVICES_SCENE_SRC } from '@/lib/landing/assets'
+import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
+import {
+  SERVICES_PHONE_SRC_AR,
+  SERVICES_PHONE_SRC_EN,
+  SERVICES_SCENE_SRC
+} from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
 
 const SERVICE_ITEMS = [
@@ -28,7 +33,10 @@ const SERVICE_ITEMS = [
 ]
 
 export function ServicesSection () {
+  const locale = useLocale()
   const t = useTranslations('services')
+  const phoneSrc =
+    locale === 'ar' ? SERVICES_PHONE_SRC_AR : SERVICES_PHONE_SRC_EN
   const reduced = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -53,13 +61,19 @@ export function ServicesSection () {
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <ScrollReveal className="flex justify-center lg:justify-start">
-          <Image
-            src={SERVICES_PHONE_SRC}
-            alt=""
-            width={520}
-            height={640}
-            className="h-auto w-[280px] rotate-[-12deg] drop-shadow-2xl sm:w-[360px] lg:w-[420px]"
-          />
+          <SpotlightTiltCard
+            spotColor="rgba(56,189,248,0.28)"
+            className="w-[280px] border-white/20 shadow-[0_24px_48px_-16px_rgba(0,0,0,0.55)] hover:border-white/35 sm:w-[360px] lg:w-[420px]"
+          >
+            <Image
+              src={phoneSrc}
+              alt=""
+              width={520}
+              height={640}
+              className="h-auto w-full"
+              priority
+            />
+          </SpotlightTiltCard>
         </ScrollReveal>
 
         <div>

@@ -4,8 +4,16 @@ function localAsset (path: string) {
   return `${BASE_PATH}${path}`
 }
 
-export const HERO_PHONE_SRC = localAsset('/images/hero-section/hero-section-phone-img.png')
-export const SERVICES_PHONE_SRC = localAsset('/images/services-section/services-sections-img.png')
+export const HERO_PHONE_SRC = localAsset('/images/hero-section/hero-section-phone-img-1.png')
+export const SERVICES_PHONE_SRC_AR = localAsset('/images/services-section/services-sections-img-ar.png')
+export const SERVICES_PHONE_SRC_EN = localAsset('/images/services-section/services-sections-img-en.png')
+
+export function servicesPhoneSrc (locale: string) {
+  return locale === 'ar' ? SERVICES_PHONE_SRC_AR : SERVICES_PHONE_SRC_EN
+}
+
+/** @deprecated Use `servicesPhoneSrc(locale)` */
+export const SERVICES_PHONE_SRC = SERVICES_PHONE_SRC_EN
 export const APPLE_STORE_BTN_SRC = localAsset('/images/stores-section/apple-store.png')
 export const GOOGLE_PLAY_BTN_SRC = localAsset('/images/stores-section/google-play.png')
 
