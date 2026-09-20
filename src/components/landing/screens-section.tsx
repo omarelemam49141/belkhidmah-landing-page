@@ -9,6 +9,7 @@ import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { initHorizontalPinScroll } from '@/lib/motion/jahez-scroll-triggers'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { ScreensCarousel } from '@/components/landing/screens-carousel'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { appScreenSrcs } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
@@ -36,7 +37,7 @@ export function ScreensSection () {
     <section
       ref={sectionRef}
       id="screens"
-      className="relative flex min-h-svh flex-col bg-white pt-22 pb-10 md:h-svh md:overflow-hidden md:pb-6"
+      className="relative flex scroll-mt-20 flex-col bg-white pt-22 pb-10 md:h-svh md:overflow-hidden md:pb-6"
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl shrink-0 px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center sm:mb-10 md:mb-8">
@@ -58,15 +59,24 @@ export function ScreensSection () {
         </div>
       </div>
 
-      <div ref={wrapperRef} className="relative z-10 min-h-0 w-full flex-1 overflow-hidden">
+      <div className="relative z-10 w-full flex-1 md:hidden">
+        <ScreensCarousel
+          srcs={appScreenSrcs(locale)}
+          prevLabel={t('prev')}
+          nextLabel={t('next')}
+          goToLabel={(n) => t('goTo', { index: n })}
+        />
+      </div>
+
+      <div ref={wrapperRef} className="relative z-10 hidden min-h-0 w-full flex-1 overflow-hidden md:block">
         <div
           ref={innerRef}
-          className="flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-center md:gap-10 md:px-8 lg:px-16"
+          className="flex h-full w-max flex-row items-center gap-10 px-8 lg:px-16"
         >
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-glow-cool/40 bg-white p-2 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5"
+              className="flex max-h-full w-[260px] shrink-0 items-center rounded-[2.2rem] border border-glow-cool/40 bg-white p-2.5"
             >
               <Image
                 src={src}
