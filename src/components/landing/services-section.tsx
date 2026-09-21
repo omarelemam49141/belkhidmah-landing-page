@@ -94,7 +94,7 @@ export function ServicesSection () {
           </SpotlightTiltCard>
         </ScrollReveal>
 
-        <div>
+        <div className="text-center lg:text-start">
           <div className="mb-10">
             <ScrollReveal>
               <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-xs">

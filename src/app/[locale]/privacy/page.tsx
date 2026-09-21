@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { LegalDocumentPage } from '@/components/landing/legal-document-page'
+import {
+  LegalDocumentPage,
+  type PrivacyPolicySection
+} from '@/components/landing/legal-document-page'
 import { buildPageMetadata } from '@/lib/metadata'
 import { routing } from '@/i18n/routing'
 
@@ -33,5 +36,12 @@ export default async function PrivacyPage ({
   setRequestLocale(locale)
   const t = await getTranslations('legal')
 
-  return <LegalDocumentPage title={t('privacyTitle')} body={t('body')} />
+  return (
+    <LegalDocumentPage
+      title={t('privacyTitle')}
+      intro={t.raw('intro') as string[]}
+      sections={t.raw('sections') as PrivacyPolicySection[]}
+      copyright={t('copyright')}
+    />
+  )
 }

@@ -11,7 +11,9 @@ import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { MotionButton } from '@/components/motion/motion-button'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
+import { LANDING_HERO_COPY_WIDTH } from '@/components/landing/landing-styles'
 import { heroPhoneScreens, HERO_SCENE_SRC } from '@/lib/landing/assets'
+import { cn } from '@/lib/utils'
 
 export function HeroSection () {
   const locale = useLocale()
@@ -61,15 +63,25 @@ export function HeroSection () {
 
           <ScrollHighlightHeading
             as="h1"
-            className="mb-4 max-w-xl text-balance text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:max-w-none lg:text-6xl"
+            className={cn(
+              LANDING_HERO_COPY_WIDTH,
+              'mb-4 text-balance text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-6xl'
+            )}
           >
             {t('title')}
           </ScrollHighlightHeading>
 
-          <ScrollLineReveal className="mb-2 text-xl font-semibold text-white sm:text-2xl">
+          <ScrollLineReveal
+            className={cn(LANDING_HERO_COPY_WIDTH, 'mb-2 text-xl font-semibold text-white sm:text-2xl')}
+          >
             {t('subtitle')}
           </ScrollLineReveal>
-          <ScrollLineReveal className="mx-auto max-w-xl text-base font-normal leading-relaxed text-white/90 sm:text-xl lg:mx-0">
+          <ScrollLineReveal
+            className={cn(
+              LANDING_HERO_COPY_WIDTH,
+              'text-base font-normal leading-relaxed text-white/90 sm:text-xl'
+            )}
+          >
             {t('description')}
           </ScrollLineReveal>
 
