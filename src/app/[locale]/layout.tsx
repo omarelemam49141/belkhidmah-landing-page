@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { cairo, tajawal } from '@/lib/fonts'
+import { buildPageMetadata } from '@/lib/metadata'
 import { routing } from '@/i18n/routing'
 import { MotionLevelProvider } from '@/hooks/use-motion-level'
 import { MOTION_BOOTSTRAP_SCRIPT } from '@/lib/motion/level'
@@ -24,17 +25,11 @@ export async function generateMetadata ({
 
   const t = await getTranslations({ locale, namespace: 'meta' })
 
-  return {
+  return buildPageMetadata({
+    locale,
     title: t('title'),
-    description: t('description'),
-    icons: {
-      icon: [
-        { url: '/favicon.ico', sizes: '32x32' },
-        { url: '/icon.svg', type: 'image/svg+xml' }
-      ],
-      apple: [{ url: '/apple-icon.png', sizes: '180x180' }]
-    }
-  }
+    description: t('description')
+  })
 }
 
 export default async function LocaleLayout ({

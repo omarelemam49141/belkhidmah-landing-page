@@ -146,3 +146,66 @@ export function initFacilityCardsAnimation(options: {
     }
   }
 }
+
+export function initContactFacilitiesAnimation(options: {
+  sectionEl: HTMLElement
+}): { kill: () => void } | null {
+  if (window.innerWidth < 768) return null
+
+  const { sectionEl } = options
+  const itemsWrap = sectionEl.querySelector('[data-contact-items]') as HTMLElement | null
+  const stack = sectionEl.querySelector('[data-contact-stack]') as HTMLElement | null
+  const items = gsap.utils.toArray<HTMLElement>('[data-contact-item]', sectionEl)
+  if (!itemsWrap || items.length < 2) return null
+
+  const setActive = (index: number) => {
+    items.forEach((el, i) => {
+      el.classList.toggle('is-active', i === index)
+    })
+    stack?.classList.toggle('is-second', index === 1)
+  }
+
+  setActive(0)
+
+  const clickCleanups: Array<() => void> = []
+  let st: ScrollTrigger | null = null
+
+  const ctx = gsap.context(() => {
+    st = ScrollTrigger.create({
+      trigger: itemsWrap,
+      start: 'top 5.75rem',
+      end: () =>
+        `+=${Math.max(sectionEl.offsetHeight - itemsWrap.offsetHeight, window.innerHeight * 1.2)}`,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        setActive(self.progress >= 0.5 ? 1 : 0)
+      }
+    })
+
+    items.forEach((item, index) => {
+      const toggler = item.querySelector('[data-contact-toggler]')
+      if (!toggler) return
+      const onClick = () => {
+        if (!st) return
+        const span = st.end - st.start
+        const target = st.start + span * (index === 0 ? 0.08 : 0.78)
+        const lenis = window.__landingLenis
+        if (lenis) lenis.scrollTo(target, { duration: 0.9 })
+        else window.scrollTo({ top: target, behavior: 'smooth' })
+      }
+      toggler.addEventListener('click', onClick)
+      clickCleanups.push(() => toggler.removeEventListener('click', onClick))
+    })
+  }, sectionEl)
+
+  const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 120)
+
+  return {
+    kill: () => {
+      window.clearTimeout(refreshId)
+      clickCleanups.forEach((fn) => fn())
+      ctx.revert()
+      setActive(0)
+    }
+  }
+}

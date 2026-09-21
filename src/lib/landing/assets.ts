@@ -88,23 +88,29 @@ export const STORE_LINKS = {
   google: '#'
 } as const
 
-export const PLACEHOLDER_CONTACT = {
-  phone: '+966 00 000 0000',
-  addressAr: 'المملكة العربية السعودية — العنوان سيُضاف لاحقًا',
-  addressEn: 'Kingdom of Saudi Arabia — address coming soon'
+export const CONTACT = {
+  email: 'service@belkhedma.sa',
+  phones: [
+    { display: '0112960009', tel: '+966112960009' },
+    { display: '0548123213', tel: '+966548123213' }
+  ],
+  mapsUrl: 'https://maps.app.goo.gl/Lnjeia8NqeePGzfN6'
 } as const
 
-const GOOGLE_MAPS_CID = '17205670262855804534'
-const GOOGLE_MAPS_LL = '24.784423,46.68234'
+export const CONTACT_LOCATION_SRC = localAsset('/images/location.jpeg')
+
+const GOOGLE_MAPS_CID = '6562383958474323201'
+const GOOGLE_MAPS_LL = '24.7680941,46.7105027'
 
 export function googleMapsEmbedSrc (locale: string) {
   const hl = locale === 'ar' ? 'ar' : 'en'
   const params = new URLSearchParams({
+    q: GOOGLE_MAPS_LL,
     ll: GOOGLE_MAPS_LL,
-    z: '15',
+    z: '16',
     t: 'm',
     hl,
-    gl: 'EG',
+    gl: 'SA',
     output: 'embed',
     cid: GOOGLE_MAPS_CID
   })
