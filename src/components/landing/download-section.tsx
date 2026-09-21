@@ -26,7 +26,7 @@ export function DownloadSection () {
   const t = useTranslations('download')
 
   return (
-    <section id="download" className="relative overflow-hidden py-28 text-white sm:py-36">
+    <section id="download" className="relative z-0 overflow-hidden py-28 text-white sm:py-36">
       <ParallaxBackground
         src={DOWNLOAD_SCENE_SRC}
         overlayClassName="bg-linear-to-b from-overlay-ink/70 via-overlay-mid/82 to-overlay-ink/92"

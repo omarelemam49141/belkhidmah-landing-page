@@ -3,8 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
-  ;(window as unknown as { gsap?: typeof gsap; ScrollTrigger?: typeof ScrollTrigger }).gsap = gsap
-  ;(window as unknown as { gsap?: typeof gsap; ScrollTrigger?: typeof ScrollTrigger }).ScrollTrigger = ScrollTrigger
 }
 
 export function initHorizontalPinScroll(options: {
@@ -152,14 +150,17 @@ export function initFacilityCardsAnimation(options: {
 export function initContactFacilitiesAnimation(options: {
   sectionEl: HTMLElement
 }): { kill: () => void } | null {
-  if (typeof window === 'undefined' || window.innerWidth < 1024) return null
-
   const { sectionEl } = options
+  if (window.innerWidth < 768) return null
+
   const cards = gsap.utils.toArray<HTMLElement>('[data-contact-card]', sectionEl)
   const layer1 = sectionEl.querySelector('[data-map-layer="1"]') as HTMLElement | null
   const layer2 = sectionEl.querySelector('[data-map-layer="2"]') as HTMLElement | null
-
   if (cards.length < 3) return null
+
+  let tl: gsap.core.Timeline | null = null
+  let killed = false
+  const clickCleanups: Array<() => void> = []
 
   const setActive = (index: number) => {
     cards.forEach((card, i) => {
@@ -169,58 +170,47 @@ export function initContactFacilitiesAnimation(options: {
 
   const setMapCrossfade = (progress: number) => {
     if (!layer1 || !layer2) return
-    // From 0 to 0.28: layer1 = 1, layer2 = 0
-    // From 0.28 to 0.65: crossfade
-    // From 0.65 to 1.0: layer1 = 0, layer2 = 1
-    if (progress <= 0.28) {
-      layer1.style.opacity = '1'
-      layer1.style.pointerEvents = 'auto'
-      layer2.style.opacity = '0'
-      layer2.style.pointerEvents = 'none'
-    } else if (progress >= 0.65) {
-      layer1.style.opacity = '0'
-      layer1.style.pointerEvents = 'none'
-      layer2.style.opacity = '1'
-      layer2.style.pointerEvents = 'auto'
-    } else {
-      const blend = (progress - 0.28) / (0.65 - 0.28)
-      layer1.style.opacity = (1 - blend).toFixed(3)
-      layer1.style.pointerEvents = blend > 0.5 ? 'none' : 'auto'
-      layer2.style.opacity = blend.toFixed(3)
-      layer2.style.pointerEvents = blend > 0.5 ? 'auto' : 'none'
-    }
+    const blend = progress <= 0.33 ? 0 : progress >= 0.67 ? 1 : (progress - 0.33) / 0.34
+    gsap.set(layer1, { autoAlpha: 1 - blend })
+    gsap.set(layer2, { autoAlpha: blend })
+    layer1.style.pointerEvents = blend > 0.5 ? 'none' : 'auto'
+    layer2.style.pointerEvents = blend > 0.5 ? 'auto' : 'none'
   }
 
-  setActive(0)
-  setMapCrossfade(0)
+  const applyProgress = (progress: number) => {
+    const activeIdx = progress < 0.33 ? 0 : progress < 0.67 ? 1 : 2
+    setActive(activeIdx)
+    setMapCrossfade(progress)
+  }
 
-  const clickCleanups: Array<() => void> = []
-  let st: ScrollTrigger | null = null
+  const create = () => {
+    if (killed || tl) return
 
-  const ctx = gsap.context(() => {
-    const scrollTravel = Math.max(window.innerHeight * 2, 1400)
+    const proxy = { p: 0 }
+    const scrollDistance = window.innerHeight * 2.15
 
-    st = ScrollTrigger.create({
-      trigger: sectionEl,
-      start: 'top top',
-      end: `+=${scrollTravel}`,
-      pin: sectionEl,
-      pinSpacing: true,
-      scrub: 0.5,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const p = self.progress
-        const activeIdx = p < 0.33 ? 0 : p < 0.67 ? 1 : 2
-        setActive(activeIdx)
-        setMapCrossfade(p)
-      },
-      onRefresh: (self) => {
-        const p = self.progress
-        const activeIdx = p < 0.33 ? 0 : p < 0.67 ? 1 : 2
-        setActive(activeIdx)
-        setMapCrossfade(p)
+    gsap.set(sectionEl, { zIndex: 30 })
+    setActive(0)
+    setMapCrossfade(0)
+
+    tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionEl,
+        start: 'top top',
+        end: `+=${scrollDistance}`,
+        pin: sectionEl,
+        pinSpacing: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 0,
+        fastScrollEnd: false
       }
+    })
+
+    tl.to(proxy, {
+      p: 1,
+      ease: 'none',
+      onUpdate: () => applyProgress(proxy.p)
     })
 
     cards.forEach((card, index) => {
@@ -228,14 +218,13 @@ export function initContactFacilitiesAnimation(options: {
       if (!toggler) return
       const onClick = (e: Event) => {
         e.preventDefault()
+        const st = tl?.scrollTrigger
         if (!st) {
-          setActive(index)
-          setMapCrossfade(index === 0 ? 0 : index === 1 ? 0.5 : 1)
+          applyProgress(index === 0 ? 0 : index === 1 ? 0.5 : 1)
           return
         }
-        const span = st.end - st.start
         const targetProgress = index === 0 ? 0.08 : index === 1 ? 0.5 : 0.88
-        const target = st.start + span * targetProgress
+        const target = st.start + (st.end - st.start) * targetProgress
         const lenis = window.__landingLenis
         if (lenis) lenis.scrollTo(target, { duration: 0.9 })
         else window.scrollTo({ top: target, behavior: 'smooth' })
@@ -243,19 +232,26 @@ export function initContactFacilitiesAnimation(options: {
       toggler.addEventListener('click', onClick)
       clickCleanups.push(() => toggler.removeEventListener('click', onClick))
     })
-  }, sectionEl)
 
-  const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 150)
+    ScrollTrigger.refresh()
+    window.setTimeout(() => ScrollTrigger.refresh(), 150)
+    window.setTimeout(() => ScrollTrigger.refresh(), 700)
+  }
+
+  const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
+  requestAnimationFrame(() => requestAnimationFrame(create))
 
   return {
     kill: () => {
-      window.clearTimeout(refreshId)
+      killed = true
+      retryIds.forEach((id) => window.clearTimeout(id))
       clickCleanups.forEach((fn) => fn())
-      ctx.revert()
-      st?.kill()
-      cards.forEach((c) => c.classList.remove('is-active'))
-      if (layer1) layer1.style.opacity = ''
-      if (layer2) layer2.style.opacity = ''
+      tl?.scrollTrigger?.kill()
+      tl?.kill()
+      tl = null
+      gsap.set(sectionEl, { clearProps: 'zIndex' })
+      gsap.set([layer1, layer2].filter(Boolean), { clearProps: 'opacity,visibility' })
+      setActive(0)
     }
   }
 }

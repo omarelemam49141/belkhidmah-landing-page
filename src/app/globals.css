@@ -371,13 +371,24 @@ html[data-motion="none"] #services li {
   background-color: rgb(11 19 36 / 0.78);
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 html.splash-locked,
 html.splash-locked body {
   overflow: hidden !important;
+  overscroll-behavior: none;
 }
 
 html.splash-locked .animate-float {
   animation-play-state: paused !important;
+}
+
+.page-splash-overlay {
+  overflow: hidden;
+  contain: paint;
 }
 
 html[data-motion="none"] .page-splash-overlay {

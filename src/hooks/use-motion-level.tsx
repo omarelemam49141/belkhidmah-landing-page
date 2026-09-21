@@ -11,15 +11,8 @@ import {
 
 const MotionLevelContext = createContext<MotionLevel>('lite')
 
-function readBootMotionLevel (): MotionLevel {
-  if (typeof document === 'undefined') return 'lite'
-  const value = document.documentElement.dataset.motion
-  if (value === 'full' || value === 'none' || value === 'lite') return value
-  return 'lite'
-}
-
 export function MotionLevelProvider ({ children }: { children: React.ReactNode }) {
-  const [level, setLevel] = useState<MotionLevel>(readBootMotionLevel)
+  const [level, setLevel] = useState<MotionLevel>('lite')
 
   useEffect(() => {
     const apply = () => {

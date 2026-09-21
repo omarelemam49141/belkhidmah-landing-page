@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 import { BrandMark } from '@/components/brand/BrandMark'
 import { useMotionLevel } from '@/hooks/use-motion-level'
 import { cn } from '@/lib/utils'
@@ -42,6 +43,14 @@ const HeroSplashCanvas = dynamic(
 
 export function HeroSplashScreen ({ transparent = false }: { transparent?: boolean } = {}) {
   const level = useMotionLevel()
+  const [introReady, setIntroReady] = useState(!transparent)
+
+  useEffect(() => {
+    if (transparent) setIntroReady(true)
+  }, [transparent])
+
+  const showCanvas = level === 'full'
+  const showFallback = introReady && !showCanvas
 
   return (
     <div
@@ -51,11 +60,11 @@ export function HeroSplashScreen ({ transparent = false }: { transparent?: boole
         !transparent && 'bg-[#fffafd]'
       )}
     >
-      {level === 'full' ? (
+      {showCanvas ? (
         <HeroSplashCanvas />
-      ) : (
+      ) : showFallback ? (
         <HeroSplashFallback animate={level !== 'none'} transparent={transparent} />
-      )}
+      ) : null}
     </div>
   )
 }
