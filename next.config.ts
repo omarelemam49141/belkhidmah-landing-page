@@ -5,6 +5,9 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 const isGithubPages = process.env.GITHUB_PAGES === 'true'
 
 const nextConfig: NextConfig = {
+  experimental: {
+    turbopackUseSystemTlsCerts: true
+  },
   images: {
     unoptimized: isGithubPages,
     remotePatterns: [

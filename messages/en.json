@@ -40,7 +40,10 @@
   "screens": {
     "badge": "The app",
     "title": "Application screens",
-    "subtitle": "Book a visit, set your address, and manage packages from your phone."
+    "subtitle": "Book a visit, set your address, and manage packages from your phone.",
+    "prev": "Previous screen",
+    "next": "Next screen",
+    "goTo": "Go to screen {index}"
   },
   "download": {
     "badge": "Available now",
@@ -54,6 +57,7 @@
     "details": "Contact details",
     "phone": "Phone",
     "address": "Address",
+    "mapTitle": "Belkhidmah location on Google Maps",
     "mapPlaceholder": "Map coming soon"
   },
   "footer": {
