@@ -42,17 +42,26 @@ export function ScrollHighlightHeading ({
   const text = typeof children === 'string' ? children : String(children)
   const locale = useLocale()
   const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const headingRef = useRef<HTMLHeadingElement>(null)
   const byWord = locale === 'ar'
   const parts = useMemo(() => splitHighlightText(text, byWord), [text, byWord])
 
   useEffect(() => {
-    if (reduced || !headingRef.current) return
+    if (!fullMotion || !headingRef.current) return
     return initTextHighlight(headingRef.current)
-  }, [reduced, text, byWord])
+  }, [fullMotion, text, byWord])
 
   if (reduced) {
     return <Tag className={className}>{text}</Tag>
+  }
+
+  if (!fullMotion) {
+    return (
+      <ScrollReveal>
+        <Tag className={className}>{text}</Tag>
+      </ScrollReveal>
+    )
   }
 
   return (

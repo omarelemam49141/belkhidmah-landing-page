@@ -8,7 +8,7 @@ import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-hea
 import { ScrollLineReveal } from '@/components/motion/scroll-line-reveal'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { initHorizontalPinScroll } from '@/lib/motion/jahez-scroll-triggers'
-import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { appScreenSrcs } from '@/lib/landing/assets'
 import { cn } from '@/lib/utils'
@@ -16,13 +16,13 @@ import { cn } from '@/lib/utils'
 export function ScreensSection () {
   const t = useTranslations('screens')
   const locale = useLocale()
-  const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (reduced || !sectionRef.current || !wrapperRef.current || !innerRef.current) return
+    if (!fullMotion || !sectionRef.current || !wrapperRef.current || !innerRef.current) return
     const anim = initHorizontalPinScroll({
       sectionEl: sectionRef.current,
       wrapperEl: wrapperRef.current,
@@ -30,7 +30,7 @@ export function ScreensSection () {
       isRtl: locale === 'ar'
     })
     return () => anim?.kill()
-  }, [locale, reduced])
+  }, [locale, fullMotion])
 
   return (
     <section

@@ -15,7 +15,7 @@ import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-hea
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
-import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
 import { servicesPhoneScreens, SERVICES_SCENE_SRC } from '@/lib/landing/assets'

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { cn } from '@/lib/utils'
 
 if (typeof window !== 'undefined') {
@@ -30,11 +30,12 @@ export function PhoneMockup ({
 }: PhoneMockupProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const stackRef = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const list = screens?.length ? screens : src ? [src] : []
-  const pageCount = list.length
+  const visible = fullMotion ? list : list.slice(0, 1)
+  const pageCount = visible.length
   const horizontal = axis === 'horizontal'
-  const scrubPages = pageCount > 1 && !reduced
+  const scrubPages = pageCount > 1 && fullMotion
 
   useEffect(() => {
     if (!scrubPages || !stackRef.current || !rootRef.current) return
@@ -103,7 +104,7 @@ export function PhoneMockup ({
             )}
             style={horizontal ? { width: `${pageCount * 100}%` } : undefined}
           >
-            {list.map((screenSrc, index) => (
+            {visible.map((screenSrc, index) => (
               <div
                 key={screenSrc}
                 className={cn(

@@ -32,9 +32,7 @@ export function ParallaxBackground({
 }: ParallaxBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const imageWrapperRef = useRef<HTMLDivElement>(null)
-  const reduced = useReducedMotion()
-  const finePointer = useFinePointer()
-  const enableParallax = !reduced && finePointer
+  const enableParallax = useFullMotion()
 
   useEffect(() => {
     if (!enableParallax || !containerRef.current || !imageWrapperRef.current) return
