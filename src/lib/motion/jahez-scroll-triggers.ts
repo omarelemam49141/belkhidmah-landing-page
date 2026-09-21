@@ -148,7 +148,11 @@ export function initFacilityCardsAnimation(options: {
 
   return {
     kill: () => {
-      ctx.revert()
+      try {
+        ctx.revert()
+      } catch {
+        /* trigger nodes already detached */
+      }
       gsap.set(cards, { clearProps: 'opacity,visibility,transform,filter' })
       if (list) gsap.set(list, { clearProps: 'perspective,transform,transformStyle' })
     }

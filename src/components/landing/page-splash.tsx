@@ -12,6 +12,7 @@ import {
 } from 'react'
 import gsap from 'gsap'
 import { HeroSplashScreen } from '@/components/landing/hero-splash-screen'
+import { requestScrollTriggerRefresh } from '@/lib/motion/scroll-refresh'
 
 const HOLD_FULL_MS = 2600
 const HOLD_LITE_MS = 900
@@ -49,6 +50,7 @@ function unlockScroll () {
   document.documentElement.classList.remove('splash-locked')
   document.documentElement.classList.add('scrollbar-hover')
   window.__landingLenis?.start()
+  requestScrollTriggerRefresh()
 }
 
 function lockScroll () {

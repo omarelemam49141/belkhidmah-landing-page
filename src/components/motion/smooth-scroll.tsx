@@ -5,6 +5,7 @@ import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useFullMotion } from '@/hooks/use-motion-level'
+import { requestScrollTriggerRefresh } from '@/lib/motion/scroll-refresh'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -41,12 +42,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     gsap.ticker.lagSmoothing(0)
     window.__landingLenis = lenis
 
-    const onRefresh = () => lenis.resize()
-    ScrollTrigger.addEventListener('refresh', onRefresh)
-    ScrollTrigger.refresh()
+    const onRefreshInit = () => {
+      lenis.resize()
+    }
+    ScrollTrigger.addEventListener('refreshInit', onRefreshInit)
+
+    if (!document.documentElement.classList.contains('splash-locked')) {
+      requestScrollTriggerRefresh()
+    }
 
     return () => {
-      ScrollTrigger.removeEventListener('refresh', onRefresh)
+      ScrollTrigger.removeEventListener('refreshInit', onRefreshInit)
       gsap.ticker.remove(onTick)
       gsap.ticker.lagSmoothing(500, 33)
       if (window.__landingLenis === lenis) window.__landingLenis = undefined

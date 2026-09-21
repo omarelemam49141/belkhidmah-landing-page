@@ -62,11 +62,14 @@ export function PhoneMockup ({
       }
     })
 
-    const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 120)
+    requestScrollTriggerRefresh()
 
     return () => {
-      window.clearTimeout(refreshId)
-      anim.scrollTrigger?.kill()
+      try {
+        anim.scrollTrigger?.kill()
+      } catch {
+        /* trigger already gone */
+      }
       anim.kill()
       gsap.set(stackRef.current, { clearProps: 'transform' })
     }
