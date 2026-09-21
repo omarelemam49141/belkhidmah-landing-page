@@ -5,10 +5,21 @@ import { BrandMark } from '@/components/brand/BrandMark'
 import { useMotionLevel } from '@/hooks/use-motion-level'
 import { cn } from '@/lib/utils'
 
-function HeroSplashFallback ({ animate = true }: { animate?: boolean }) {
+function HeroSplashFallback ({
+  animate = true,
+  transparent = false
+}: {
+  animate?: boolean
+  transparent?: boolean
+}) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[#fffafd]">
-      <div className="relative flex h-16 w-16 items-center justify-center">
+    <div
+      className={cn(
+        'absolute inset-0 flex items-center justify-center',
+        !transparent && 'bg-[#fffafd]'
+      )}
+    >
+      <div data-splash-logo className="relative aspect-square w-[min(42%,13.5rem)]">
         <span
           className={cn(
             'pointer-events-none absolute inset-0 rounded-full border-2 border-brand-blush border-t-brand-pink',
@@ -16,8 +27,8 @@ function HeroSplashFallback ({ animate = true }: { animate?: boolean }) {
           )}
           aria-hidden
         />
-        <div className={cn(animate && 'hero-splash-float')}>
-          <BrandMark size={40} />
+        <div className={cn('flex h-full w-full items-center justify-center p-[18%]', animate && 'hero-splash-float')}>
+          <BrandMark size={160} className="h-full! w-full!" />
         </div>
       </div>
     </div>
@@ -26,18 +37,24 @@ function HeroSplashFallback ({ animate = true }: { animate?: boolean }) {
 
 const HeroSplashCanvas = dynamic(
   () => import('./hero-splash-canvas').then((module) => module.HeroSplashCanvas),
-  { ssr: false, loading: () => <HeroSplashFallback /> }
+  { ssr: false, loading: () => null }
 )
 
-export function HeroSplashScreen () {
+export function HeroSplashScreen ({ transparent = false }: { transparent?: boolean } = {}) {
   const level = useMotionLevel()
 
   return (
-    <div data-no-tilt className="absolute inset-0 cursor-pointer overflow-hidden bg-[#fffafd]">
+    <div
+      data-no-tilt
+      className={cn(
+        'absolute inset-0 cursor-pointer overflow-hidden',
+        !transparent && 'bg-[#fffafd]'
+      )}
+    >
       {level === 'full' ? (
         <HeroSplashCanvas />
       ) : (
-        <HeroSplashFallback animate={level !== 'none'} />
+        <HeroSplashFallback animate={level !== 'none'} transparent={transparent} />
       )}
     </div>
   )

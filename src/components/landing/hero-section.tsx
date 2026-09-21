@@ -16,7 +16,19 @@ import { heroPhoneScreens, HERO_SCENE_SRC } from '@/lib/landing/assets'
 export function HeroSection () {
   const locale = useLocale()
   const t = useTranslations('hero')
+  const { skipped } = usePageSplash()
   const phoneScreens = heroPhoneScreens(locale)
+
+  const phone = (
+    <>
+      <div className="absolute inset-8 rounded-[3rem] bg-glow-cool/35 blur-3xl hero-phone-glow" aria-hidden />
+      <div className="relative z-10 animate-float">
+        <SpotlightTiltCard glass={false}>
+          <PhoneMockup lead={<HeroSplashTarget />} screens={phoneScreens} priority />
+        </SpotlightTiltCard>
+      </div>
+    </>
+  )
 
   return (
     <section id="home" className="relative flex min-h-[94vh] items-center overflow-hidden">
@@ -30,14 +42,13 @@ export function HeroSection () {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-28 sm:px-6 sm:py-32 lg:grid-cols-2 lg:gap-12 lg:px-8">
         <div className="order-2 flex justify-center lg:order-1">
-          <FadeIn delay={0.2} className="relative">
-            <div className="absolute inset-8 rounded-[3rem] bg-glow-cool/35 blur-3xl hero-phone-glow" aria-hidden />
-            <div className="relative z-10 animate-float">
-              <SpotlightTiltCard glass={false}>
-                <PhoneMockup lead={<HeroSplashScreen />} screens={phoneScreens} priority />
-              </SpotlightTiltCard>
-            </div>
-          </FadeIn>
+          {skipped ? (
+            <FadeIn delay={0.2} className="relative">
+              {phone}
+            </FadeIn>
+          ) : (
+            <div className="relative">{phone}</div>
+          )}
         </div>
 
         <div className="order-1 text-center lg:order-2 lg:text-start">

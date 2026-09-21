@@ -180,10 +180,11 @@ export function HeroSplashCanvas () {
         flat
         frameloop={active ? 'always' : 'never'}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         camera={{ position: [0, 0, 4.4], fov: 36 }}
-        onCreated={({ scene }) => {
-          scene.background = new THREE.Color(BG)
+        onCreated={({ gl, scene }) => {
+          scene.background = null
+          gl.setClearColor(BG, 0)
         }}
       >
         <ambientLight intensity={0.85} />

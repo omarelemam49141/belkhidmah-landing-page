@@ -376,6 +376,10 @@ html.splash-locked body {
   overflow: hidden !important;
 }
 
+html.splash-locked .animate-float {
+  animation-play-state: paused !important;
+}
+
 html[data-motion="none"] .page-splash-overlay {
   opacity: 0;
   visibility: hidden;
