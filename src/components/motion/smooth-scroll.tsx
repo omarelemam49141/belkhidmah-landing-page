@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useFullMotion } from '@/hooks/use-motion-level'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
@@ -12,7 +13,11 @@ if (typeof window !== 'undefined') {
 const NAV_OFFSET = -88
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const fullMotion = useFullMotion()
+
   useEffect(() => {
+    if (!fullMotion) return
+
     const lenis = new Lenis({
       autoRaf: false,
       duration: 1.2,
@@ -47,7 +52,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       if (window.__landingLenis === lenis) window.__landingLenis = undefined
       lenis.destroy()
     }
-  }, [])
+  }, [fullMotion])
 
   return <>{children}</>
 }

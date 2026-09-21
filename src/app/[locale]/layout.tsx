@@ -4,6 +4,8 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation'
 import { cairo, tajawal } from '@/lib/fonts'
 import { routing } from '@/i18n/routing'
+import { MotionLevelProvider } from '@/hooks/use-motion-level'
+import { MOTION_BOOTSTRAP_SCRIPT } from '@/lib/motion/level'
 import '../globals.css'
 
 export function generateStaticParams () {
@@ -60,10 +62,15 @@ export default async function LocaleLayout ({
       className={`${cairo.variable} ${tajawal.variable}${isRTL ? ' locale-ar' : ''}`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: MOTION_BOOTSTRAP_SCRIPT }} />
+      </head>
       <body className={`${cairo.className} font-sans antialiased min-h-screen`}>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <MotionLevelProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </MotionLevelProvider>
       </body>
     </html>
   )

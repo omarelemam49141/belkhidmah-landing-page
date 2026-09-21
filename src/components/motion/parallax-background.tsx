@@ -4,8 +4,7 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { useFinePointer } from '@/hooks/use-fine-pointer'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { cn } from '@/lib/utils'
 
 if (typeof window !== 'undefined') {

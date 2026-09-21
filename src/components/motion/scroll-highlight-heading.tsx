@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 import { useLocale } from 'next-intl'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { initTextHighlight } from '@/lib/motion/text-highlight'
+import { ScrollReveal } from '@/components/motion/scroll-reveal'
 
 type HeadingTag = 'h1' | 'h2' | 'h3'
 
