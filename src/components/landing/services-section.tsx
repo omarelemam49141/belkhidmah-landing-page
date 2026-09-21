@@ -106,7 +106,7 @@ export function ServicesSection () {
               {t('title')}
             </ScrollHighlightHeading>
             <ScrollReveal>
-              <span className="mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-pink to-brand-lilac" />
+              <span className="mx-auto mt-4 block h-1 w-16 rounded-full bg-linear-to-r from-brand-pink to-brand-lilac lg:mx-0" />
             </ScrollReveal>
           </div>
 

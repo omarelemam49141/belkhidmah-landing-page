@@ -6,6 +6,7 @@ import { useFullMotion } from '@/hooks/use-motion-level'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { initTextHighlight } from '@/lib/motion/text-highlight'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { cn } from '@/lib/utils'
 
 type HeadingTag = 'h1' | 'h2' | 'h3'
 
@@ -52,20 +53,22 @@ export function ScrollHighlightHeading ({
     return initTextHighlight(headingRef.current)
   }, [fullMotion, text, byWord])
 
+  const headingClassName = cn('w-full', className)
+
   if (reduced) {
-    return <Tag className={className}>{text}</Tag>
+    return <Tag className={headingClassName}>{text}</Tag>
   }
 
   if (!fullMotion) {
     return (
       <ScrollReveal>
-        <Tag className={className}>{text}</Tag>
+        <Tag className={headingClassName}>{text}</Tag>
       </ScrollReveal>
     )
   }
 
   return (
-    <Tag ref={headingRef} className={className} aria-label={text}>
+    <Tag ref={headingRef} className={headingClassName} aria-label={text}>
       {parts.map((part, index) => {
         if (part.type === 'space') {
           return <span key={`s-${index}`}>{part.value}</span>
