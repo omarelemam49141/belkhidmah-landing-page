@@ -1,8 +1,19 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { requestScrollTriggerRefresh } from '@/lib/motion/scroll-refresh'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
+}
+
+function safeKillTimeline (tl: gsap.core.Timeline | null) {
+  if (!tl) return
+  try {
+    tl.scrollTrigger?.kill()
+  } catch {
+    /* pin spacer already detached */
+  }
+  tl.kill()
 }
 
 export function initHorizontalPinScroll(options: {
@@ -49,9 +60,7 @@ export function initHorizontalPinScroll(options: {
       force3D: true
     })
 
-    ScrollTrigger.refresh()
-    window.setTimeout(() => ScrollTrigger.refresh(), 150)
-    window.setTimeout(() => ScrollTrigger.refresh(), 700)
+    requestScrollTriggerRefresh()
   }
 
   const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
@@ -59,7 +68,7 @@ export function initHorizontalPinScroll(options: {
 
   innerEl.querySelectorAll('img').forEach((img) => {
     const onLoad = () => {
-      if (tl) ScrollTrigger.refresh()
+      if (tl) requestScrollTriggerRefresh()
       else create()
     }
     if (!img.complete) {
@@ -73,8 +82,8 @@ export function initHorizontalPinScroll(options: {
       killed = true
       retryIds.forEach((id) => window.clearTimeout(id))
       cleanups.forEach((fn) => fn())
-      tl?.scrollTrigger?.kill()
-      tl?.kill()
+      safeKillTimeline(tl)
+      tl = null
       gsap.set(innerEl, { clearProps: 'transform,willChange' })
     }
   }
@@ -135,11 +144,10 @@ export function initFacilityCardsAnimation(options: {
     })
   }, sectionEl)
 
-  const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 120)
+  requestScrollTriggerRefresh()
 
   return {
     kill: () => {
-      window.clearTimeout(refreshId)
       ctx.revert()
       gsap.set(cards, { clearProps: 'opacity,visibility,transform,filter' })
       if (list) gsap.set(list, { clearProps: 'perspective,transform,transformStyle' })
@@ -237,9 +245,7 @@ export function initContactFacilitiesAnimation(options: {
       clickCleanups.push(() => toggler.removeEventListener('click', onClick))
     })
 
-    ScrollTrigger.refresh()
-    window.setTimeout(() => ScrollTrigger.refresh(), 150)
-    window.setTimeout(() => ScrollTrigger.refresh(), 700)
+    requestScrollTriggerRefresh()
   }
 
   const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
@@ -250,8 +256,7 @@ export function initContactFacilitiesAnimation(options: {
       killed = true
       retryIds.forEach((id) => window.clearTimeout(id))
       clickCleanups.forEach((fn) => fn())
-      tl?.scrollTrigger?.kill()
-      tl?.kill()
+      safeKillTimeline(tl)
       tl = null
       gsap.set(sectionEl, { clearProps: 'zIndex' })
       layer1?.classList.remove('is-hidden')

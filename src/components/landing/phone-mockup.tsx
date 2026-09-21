@@ -5,6 +5,7 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useFullMotion } from '@/hooks/use-motion-level'
+import { requestScrollTriggerRefresh } from '@/lib/motion/scroll-refresh'
 import { cn } from '@/lib/utils'
 
 if (typeof window !== 'undefined') {

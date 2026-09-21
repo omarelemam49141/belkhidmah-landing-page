@@ -111,7 +111,7 @@
   html {
     scroll-behavior: auto;
     overflow-x: clip;
-    scrollbar-gutter: stable both-edges;
+    scrollbar-gutter: stable;
     scrollbar-width: thin;
   }
 

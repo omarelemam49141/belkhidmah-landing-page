@@ -35,35 +35,13 @@ export function initTextHighlight (headingEl: HTMLElement): () => void {
     end: 'top 38%',
     scrub: 0.35,
     invalidateOnRefresh: true,
-    onUpdate: (self) => apply(self.progress, true)
+    onUpdate: (self) => apply(self.progress, true),
+    onRefresh: (self) => apply(self.progress, false)
   })
-
-  const sync = () => apply(st.progress, false)
 
   apply(st.progress, false)
 
-  ScrollTrigger.addEventListener('refresh', sync)
-
-  let cancelled = false
-  const refreshIds = [
-    window.setTimeout(() => {
-      if (!cancelled) ScrollTrigger.refresh()
-    }, 120),
-    window.setTimeout(() => {
-      if (!cancelled) ScrollTrigger.refresh()
-    }, 500),
-    window.setTimeout(() => {
-      if (!cancelled) ScrollTrigger.refresh()
-    }, 1200)
-  ]
-  void document.fonts?.ready.then(() => {
-    if (!cancelled) ScrollTrigger.refresh()
-  })
-
   return () => {
-    cancelled = true
-    refreshIds.forEach((id) => window.clearTimeout(id))
-    ScrollTrigger.removeEventListener('refresh', sync)
     st.kill()
     gsap.set(chars, { clearProps: 'opacity' })
   }
