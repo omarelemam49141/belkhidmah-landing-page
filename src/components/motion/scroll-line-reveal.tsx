@@ -40,7 +40,7 @@ export function ScrollLineReveal ({
   }
 
   return (
-    <Tag ref={ref} className={className} aria-label={text}>
+    <Tag ref={ref as React.Ref<never>} className={className} aria-label={text}>
       {text}
     </Tag>
   )
