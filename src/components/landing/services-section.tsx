@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import {
   Brush,
   ChefHat,
@@ -15,7 +15,7 @@ import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-hea
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ParallaxBackground } from '@/components/motion/parallax-background'
 import { initFacilityCardsAnimation } from '@/lib/motion/jahez-scroll-triggers'
-import { useFullMotion } from '@/hooks/use-motion-level'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { LANDING_SECTION_TITLE_CLASS } from '@/components/landing/landing-styles'
 import { SpotlightTiltCard } from '@/components/motion/spotlight-tilt-card'
 import { servicesPhoneScreens, SERVICES_SCENE_SRC } from '@/lib/landing/assets'
@@ -33,28 +33,26 @@ export function ServicesSection () {
   const locale = useLocale()
   const t = useTranslations('services')
   const phoneScreens = servicesPhoneScreens(locale)
-  const fullMotion = useFullMotion()
+  const reduced = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
 
-  useEffect(() => {
-    if (!fullMotion || !sectionRef.current) return
+  useLayoutEffect(() => {
+    if (reduced || !sectionRef.current) return
     const anim = initFacilityCardsAnimation({ sectionEl: sectionRef.current })
     return () => anim?.kill()
-  }, [fullMotion])
+  }, [reduced])
 
   const serviceList = (
-    <ul className="space-y-3">
+    <ul data-facility-list className="space-y-3 [perspective:1400px]">
       {SERVICE_ITEMS.map((item) => {
         const Icon = item.icon
         return (
           <li
             key={item.key}
             data-facility-card
-            className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12"
+            className="flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md [transform-style:preserve-3d]"
           >
             <span
-              data-facility-stagger
-              data-facility-media
               className={cn(
                 'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
                 item.wrap
@@ -62,7 +60,7 @@ export function ServicesSection () {
             >
               <Icon className={cn('h-6 w-6', item.color)} />
             </span>
-            <span data-facility-stagger className="text-lg font-semibold tracking-tight">
+            <span className="text-lg font-semibold tracking-tight">
               {t(item.key)}
             </span>
           </li>
@@ -112,7 +110,7 @@ export function ServicesSection () {
             </ScrollReveal>
           </div>
 
-          {fullMotion ? serviceList : <ScrollReveal>{serviceList}</ScrollReveal>}
+          {serviceList}
         </div>
       </div>
     </section>
