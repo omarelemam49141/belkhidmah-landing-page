@@ -27,6 +27,7 @@ export function initHorizontalPinScroll(options: {
 
   let tl: gsap.core.Timeline | null = null
   let killed = false
+  const retryIds: number[] = []
   const cleanups: Array<() => void> = []
 
   const measureTravel = () =>
@@ -34,6 +35,10 @@ export function initHorizontalPinScroll(options: {
 
   const create = () => {
     if (killed || tl) return
+    if (document.documentElement.classList.contains('splash-locked')) {
+      retryIds.push(window.setTimeout(create, 200))
+      return
+    }
     const travel = measureTravel()
     if (travel <= 0) return
 
@@ -63,7 +68,7 @@ export function initHorizontalPinScroll(options: {
     requestScrollTriggerRefresh()
   }
 
-  const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
+  retryIds.push(window.setTimeout(create, 50), window.setTimeout(create, 350))
   requestAnimationFrame(() => requestAnimationFrame(create))
 
   innerEl.querySelectorAll('img').forEach((img) => {
@@ -172,6 +177,7 @@ export function initContactFacilitiesAnimation(options: {
 
   let tl: gsap.core.Timeline | null = null
   let killed = false
+  const retryIds: number[] = []
   const clickCleanups: Array<() => void> = []
 
   const setActive = (index: number) => {
@@ -201,6 +207,10 @@ export function initContactFacilitiesAnimation(options: {
 
   const create = () => {
     if (killed || tl) return
+    if (document.documentElement.classList.contains('splash-locked')) {
+      retryIds.push(window.setTimeout(create, 200))
+      return
+    }
 
     const proxy = { p: 0 }
     const scrollDistance = window.innerHeight * 2.15
@@ -252,7 +262,7 @@ export function initContactFacilitiesAnimation(options: {
     requestScrollTriggerRefresh()
   }
 
-  const retryIds = [window.setTimeout(create, 50), window.setTimeout(create, 350)]
+  retryIds.push(window.setTimeout(create, 50), window.setTimeout(create, 350))
   requestAnimationFrame(() => requestAnimationFrame(create))
 
   return {
