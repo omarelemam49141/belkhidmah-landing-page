@@ -184,12 +184,10 @@ export function LandingNavbar () {
 
         <div className="ms-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="relative">
-            {fullMotion && (
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-glow-cool/45 blur-lg animate-nav-cta-glow"
-              />
-            )}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-glow-cool/45 blur-lg animate-nav-cta-glow"
+            />
             <MotionButton
               asChild
               size="sm"

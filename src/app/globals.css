@@ -299,6 +299,7 @@ html[data-motion="lite"] section[id],
 html[data-motion="none"] section[id] {
   scroll-margin-top: 5.5rem;
 }
+html[data-motion="lite"] .animate-nav-cta-glow,
 html[data-motion="none"] .animate-nav-cta-glow,
 html[data-motion="lite"] .animate-float,
 html[data-motion="none"] .animate-float,
