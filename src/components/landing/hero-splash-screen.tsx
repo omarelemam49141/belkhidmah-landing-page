@@ -43,14 +43,15 @@ const HeroSplashCanvas = dynamic(
 
 export function HeroSplashScreen ({ transparent = false }: { transparent?: boolean } = {}) {
   const level = useMotionLevel()
-  const [introReady, setIntroReady] = useState(!transparent)
+  const [allowFallback, setAllowFallback] = useState(!transparent)
 
   useEffect(() => {
-    if (transparent) setIntroReady(true)
+    if (!transparent) return
+    if (document.documentElement.dataset.motion !== 'full') setAllowFallback(true)
   }, [transparent])
 
   const showCanvas = level === 'full'
-  const showFallback = introReady && !showCanvas
+  const showFallback = allowFallback && !showCanvas
 
   return (
     <div

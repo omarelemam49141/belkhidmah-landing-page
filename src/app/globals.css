@@ -110,6 +110,46 @@
   }
   html {
     scroll-behavior: auto;
+    overflow-x: clip;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    html {
+      scrollbar-color: transparent transparent;
+    }
+    html::-webkit-scrollbar {
+      width: 8px;
+      background: transparent;
+    }
+    html::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    html::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 999px;
+    }
+    html.scrollbar-hover:hover {
+      scrollbar-color: rgb(80 70 90 / 0.4) transparent;
+    }
+    html.scrollbar-hover:hover::-webkit-scrollbar-thumb {
+      background-color: rgb(80 70 90 / 0.38);
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    html {
+      scrollbar-color: rgb(80 70 90 / 0.28) transparent;
+    }
+    html::-webkit-scrollbar {
+      width: 4px;
+      background: transparent;
+    }
+    html::-webkit-scrollbar-thumb {
+      background-color: rgb(80 70 90 / 0.28);
+      border-radius: 999px;
+    }
   }
   html.lenis,
   html.lenis body {
@@ -369,11 +409,6 @@ html[data-motion="none"] .glass-card-dark {
 html[data-motion="lite"] #services li,
 html[data-motion="none"] #services li {
   background-color: rgb(11 19 36 / 0.78);
-}
-
-html,
-body {
-  overflow-x: clip;
 }
 
 html.splash-locked,

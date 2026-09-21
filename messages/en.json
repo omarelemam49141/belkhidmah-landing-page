@@ -54,11 +54,21 @@
   "contact": {
     "badge": "Contact",
     "title": "Get in touch",
-    "details": "Contact details",
-    "phone": "Phone",
-    "address": "Address",
+    "email": "Email",
+    "emailTitle": "Write to us anytime",
+    "emailBody": "Unified inbox for sales, customer support, and after-sales. We reply during official working hours.",
+    "emailCta": "Send an email",
+    "phone": "Phone & Direct Support",
+    "phonesLabel": "Sales, support & after-sales",
+    "phoneBody": "Call our team for bookings, home service inquiries, and immediate follow-up.",
+    "phoneCta": "Call now",
+    "maps": "Office & Location",
+    "locationTitle": "Main Office in Riyadh",
+    "locationBody": "Al Malqa, Riyadh, Saudi Arabia — We look forward to welcoming you.",
+    "locationHours": "Working hours: Sunday – Thursday: 9:00 AM – 6:00 PM",
+    "mapsCta": "Open in Google Maps",
     "mapTitle": "Belkhidmah location on Google Maps",
-    "mapPlaceholder": "Map coming soon"
+    "locationAlt": "Belkhidmah office on the map"
   },
   "footer": {
     "brand": "Belkhidmah",
@@ -70,6 +80,7 @@
   "legal": {
     "badge": "Legal",
     "privacyTitle": "Privacy Policy",
+    "privacyDescription": "How Belkhidmah collects, uses, and protects your personal data when you book home services through the app.",
     "backHome": "Back home",
     "body": "Belkhidmah respects your privacy. We collect only what we need to deliver home services (such as name, mobile number, and address) to process bookings and improve the app.\n\nWe do not sell your data. Limited information may be shared with operations and payment providers solely to fulfill a request.\n\nYou may ask us to correct or delete your data through the contact channels on this site.\n\nThis is a starter policy and will be replaced by the official legal text."
   }

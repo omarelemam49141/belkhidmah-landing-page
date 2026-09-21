@@ -168,19 +168,23 @@ export function initContactFacilitiesAnimation(options: {
     })
   }
 
-  const setMapCrossfade = (progress: number) => {
+  const SNAP_MAP_AT = 0.67
+  let mapIsSecond = false
+
+  const setMapPhoto = (progress: number) => {
     if (!layer1 || !layer2) return
-    const blend = progress <= 0.33 ? 0 : progress >= 0.67 ? 1 : (progress - 0.33) / 0.34
-    gsap.set(layer1, { autoAlpha: 1 - blend })
-    gsap.set(layer2, { autoAlpha: blend })
-    layer1.style.pointerEvents = blend > 0.5 ? 'none' : 'auto'
-    layer2.style.pointerEvents = blend > 0.5 ? 'auto' : 'none'
+    const showSecond = progress >= SNAP_MAP_AT
+    if (showSecond === mapIsSecond) return
+    mapIsSecond = showSecond
+    layer1.classList.toggle('is-hidden', showSecond)
+    layer2.classList.toggle('is-visible', showSecond)
+    layer1.style.pointerEvents = showSecond ? 'none' : 'auto'
   }
 
   const applyProgress = (progress: number) => {
     const activeIdx = progress < 0.33 ? 0 : progress < 0.67 ? 1 : 2
     setActive(activeIdx)
-    setMapCrossfade(progress)
+    setMapPhoto(progress)
   }
 
   const create = () => {
@@ -191,7 +195,7 @@ export function initContactFacilitiesAnimation(options: {
 
     gsap.set(sectionEl, { zIndex: 30 })
     setActive(0)
-    setMapCrossfade(0)
+    setMapPhoto(0)
 
     tl = gsap.timeline({
       scrollTrigger: {
@@ -250,7 +254,8 @@ export function initContactFacilitiesAnimation(options: {
       tl?.kill()
       tl = null
       gsap.set(sectionEl, { clearProps: 'zIndex' })
-      gsap.set([layer1, layer2].filter(Boolean), { clearProps: 'opacity,visibility' })
+      layer1?.classList.remove('is-hidden')
+      layer2?.classList.remove('is-visible')
       setActive(0)
     }
   }

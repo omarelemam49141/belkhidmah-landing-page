@@ -29,6 +29,7 @@ jobs:
         env:
           GITHUB_PAGES: 'true'
           NEXT_PUBLIC_BASE_PATH: '/belkhidmah-landing-page'
+          NEXT_PUBLIC_SITE_URL: 'https://omarelemam49141.github.io'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out

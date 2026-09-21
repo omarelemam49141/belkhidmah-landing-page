@@ -105,7 +105,7 @@ export function ContactSection () {
       <div className="relative z-10 mx-auto w-full max-w-7xl shrink-0 px-4 sm:px-6 lg:px-8">
         <div className="mb-6 text-center sm:mb-8 md:mb-6">
           <ScrollReveal>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-brand-blush bg-brand-blush/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta shadow-xs">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-brand-blush bg-brand-blush/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-magenta">
               <Sparkles className="h-3.5 w-3.5 text-brand-pink" />
               <span>{t('badge')}</span>
             </div>
@@ -120,7 +120,7 @@ export function ContactSection () {
       </div>
 
       <div className="relative z-10 mx-auto hidden min-h-0 w-full max-w-7xl flex-1 grid-cols-12 items-stretch gap-6 px-4 sm:px-6 md:grid lg:gap-8 lg:px-8">
-        <div className="flex min-h-0 flex-col justify-center gap-3 md:col-span-5">
+        <div className="flex h-full min-h-0 flex-col gap-3 md:col-span-5">
           {cards.map((card) => {
             const Icon = card.icon
             return (
@@ -128,9 +128,9 @@ export function ContactSection () {
                 key={card.id}
                 data-contact-card={card.id}
                 className={cn(
-                  'group/card flex flex-col overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-trust-blue-50/60 shadow-xs',
-                  'transition-colors duration-400 ease-[cubic-bezier(0.61,0.22,0.51,0.89)]',
-                  '[&.is-active]:border-brand-magenta/40 [&.is-active]:bg-trust-blue-50 [&.is-active]:shadow-md',
+                  'group/card flex min-h-16 flex-col overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-trust-blue-50/60',
+                  'transition-[flex-grow,background-color,border-color] duration-500 ease-[cubic-bezier(0.61,0.22,0.51,0.89)]',
+                  '[&.is-active]:min-h-0 [&.is-active]:flex-1 [&.is-active]:border-brand-magenta/40 [&.is-active]:bg-trust-blue-50',
                   card.id === 0 && 'is-active'
                 )}
               >
@@ -140,7 +140,7 @@ export function ContactSection () {
                   className="flex h-16 w-full shrink-0 cursor-pointer items-center justify-between px-5 text-start group-[.is-active]/card:cursor-default lg:h-[4.5rem] lg:px-6"
                 >
                   <span className="flex min-w-0 items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-brand-blush/60 bg-white text-brand-magenta shadow-xs group-[.is-active]/card:text-brand-pink">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-brand-blush/60 bg-white text-brand-magenta group-[.is-active]/card:text-brand-pink">
                       <Icon className="h-5 w-5" />
                     </span>
                     <span className="truncate text-base font-bold text-brand-magenta lg:text-lg">
@@ -152,9 +152,9 @@ export function ContactSection () {
                   </span>
                 </button>
 
-                <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.61,0.22,0.51,0.89)] group-[.is-active]/card:grid-rows-[1fr]">
-                  <div className="overflow-hidden">
-                    <div className="px-5 pb-5 pt-1 opacity-0 transition-opacity duration-300 group-[.is-active]/card:opacity-100 lg:px-6 lg:pb-6">
+                <div className="grid min-h-0 flex-1 grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.61,0.22,0.51,0.89)] group-[.is-active]/card:grid-rows-[1fr]">
+                  <div className="min-h-0 overflow-hidden">
+                    <div className="flex h-full min-h-0 flex-col px-5 pb-5 pt-1 opacity-0 transition-opacity duration-300 group-[.is-active]/card:opacity-100 lg:px-6 lg:pb-6">
                       <h3 className="text-lg font-bold tracking-tight text-neutral-900 lg:text-2xl">
                         {card.title}
                       </h3>
@@ -162,12 +162,12 @@ export function ContactSection () {
                         {card.body}
                       </p>
                       {card.extra}
-                      <div className="pt-4">
+                      <div className="mt-auto pt-4">
                         <a
                           href={card.ctaHref}
                           target={card.external ? '_blank' : undefined}
                           rel={card.external ? 'noopener noreferrer' : undefined}
-                          className="inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:from-brand-pink hover:to-brand-magenta"
+                          className="inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-brand-magenta to-brand-pink px-6 py-2.5 text-sm font-semibold text-white hover:from-brand-pink hover:to-brand-magenta"
                         >
                           <span>{card.ctaText}</span>
                           {card.external ? <ExternalLink className="h-3.5 w-3.5 rtl:rotate-90" /> : null}
@@ -181,8 +181,11 @@ export function ContactSection () {
           })}
         </div>
 
-        <div className="relative min-h-0 overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-neutral-100 shadow-xl md:col-span-7">
-          <div data-map-layer="1" className="absolute inset-0">
+        <div className="relative h-full min-h-0 overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-neutral-100 md:col-span-7">
+          <div
+            data-map-layer="1"
+            className="absolute inset-0 z-10 transition-opacity duration-300 ease-out [&.is-hidden]:pointer-events-none [&.is-hidden]:opacity-0"
+          >
             <iframe
               title={t('mapTitle')}
               src={googleMapsEmbedSrc(locale)}
@@ -192,20 +195,22 @@ export function ContactSection () {
               allowFullScreen
             />
           </div>
-          <div data-map-layer="2" className="pointer-events-none absolute inset-0 opacity-0">
-            <Image
+          <div
+            data-map-layer="2"
+            className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 ease-out [&.is-visible]:z-10 [&.is-visible]:opacity-100"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={CONTACT_LOCATION_SRC}
               alt={t('locationAlt')}
-              fill
-              sizes="(min-width: 768px) 58vw, 100vw"
-              className="object-cover"
+              className="h-full w-full object-cover object-center"
             />
           </div>
           <a
             href={CONTACT.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute inset-x-4 bottom-4 z-20 flex items-center justify-between rounded-2xl border border-white/60 bg-white/95 px-4 py-3 text-sm font-bold text-brand-magenta shadow-lg backdrop-blur-md hover:border-brand-magenta/40"
+            className="absolute inset-x-4 bottom-4 z-20 flex items-center justify-between rounded-2xl border border-white/60 bg-white/95 px-4 py-3 text-sm font-bold text-brand-magenta backdrop-blur-md hover:border-brand-magenta/40"
           >
             <span className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-brand-pink" />
@@ -217,7 +222,7 @@ export function ContactSection () {
       </div>
 
       <div className="flex flex-col gap-6 px-4 sm:px-6 md:hidden">
-        <div className="relative h-72 w-full overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-neutral-100 shadow-md">
+        <div className="relative h-72 w-full overflow-hidden rounded-[1.75rem] border border-glow-cool/25 bg-neutral-100">
           {mobileMapLayer === 1 ? (
             <iframe
               title={t('mapTitle')}
@@ -239,7 +244,7 @@ export function ContactSection () {
           <button
             type="button"
             onClick={() => setMobileMapLayer(mobileMapLayer === 1 ? 2 : 1)}
-            className="absolute top-3 end-3 z-20 rounded-full border border-white/60 bg-white/90 px-3 py-1 text-xs font-semibold text-brand-magenta shadow-xs"
+            className="absolute top-3 end-3 z-20 rounded-full border border-white/60 bg-white/90 px-3 py-1 text-xs font-semibold text-brand-magenta"
           >
             {mobileMapLayer === 1 ? t('locationAlt') : t('mapTitle')}
           </button>
@@ -247,7 +252,7 @@ export function ContactSection () {
             href={CONTACT.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute inset-x-4 bottom-4 z-20 flex items-center justify-between rounded-xl border border-white/60 bg-white/95 px-4 py-2.5 text-xs font-bold text-brand-magenta shadow-md"
+            className="absolute inset-x-4 bottom-4 z-20 flex items-center justify-between rounded-xl border border-white/60 bg-white/95 px-4 py-2.5 text-xs font-bold text-brand-magenta"
           >
             <span>{t('mapsCta')}</span>
             <ExternalLink className="h-3.5 w-3.5 rtl:rotate-90" />
@@ -263,7 +268,7 @@ export function ContactSection () {
                 key={card.id}
                 className={cn(
                   'overflow-hidden rounded-[1.5rem] border border-glow-cool/25 bg-trust-blue-50/70',
-                  isOpen && 'border-brand-magenta/40 bg-trust-blue-50 shadow-sm'
+                  isOpen && 'border-brand-magenta/40 bg-trust-blue-50'
                 )}
               >
                 <button
