@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useRef } from 'react'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { cn } from '@/lib/utils'
 
@@ -16,6 +17,7 @@ export function SpotlightTiltCard ({
   glass = true
 }: SpotlightTiltCardProps) {
   const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const cardRef = useRef<HTMLDivElement>(null)
 
   const reset = useCallback(() => {
@@ -25,7 +27,7 @@ export function SpotlightTiltCard ({
   }, [])
 
   function handlePointer (event: React.PointerEvent<HTMLDivElement>) {
-    if (reduced || event.pointerType !== 'mouse') return
+    if (!fullMotion || reduced || event.pointerType !== 'mouse') return
     const el = cardRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()

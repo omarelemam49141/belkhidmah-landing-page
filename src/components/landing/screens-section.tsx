@@ -36,7 +36,10 @@ export function ScreensSection () {
     <section
       ref={sectionRef}
       id="screens"
-      className="relative flex min-h-svh flex-col bg-white pt-22 pb-10 md:h-svh md:overflow-hidden md:pb-6"
+      className={cn(
+        'relative flex min-h-svh flex-col bg-white pt-22 pb-10',
+        fullMotion ? 'md:h-svh md:overflow-hidden md:pb-6' : 'md:pb-16'
+      )}
     >
       <div className="relative z-10 mx-auto w-full max-w-7xl shrink-0 px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center sm:mb-10 md:mb-8">
@@ -58,15 +61,27 @@ export function ScreensSection () {
         </div>
       </div>
 
-      <div ref={wrapperRef} className="relative z-10 min-h-0 w-full flex-1 overflow-hidden">
+      <div
+        ref={wrapperRef}
+        className={cn(
+          'relative z-10 min-h-0 w-full flex-1',
+          fullMotion ? 'overflow-hidden' : 'overflow-x-auto overscroll-x-contain'
+        )}
+      >
         <div
           ref={innerRef}
-          className="flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-center md:gap-10 md:px-8 lg:px-16"
+          className={cn(
+            'flex h-full flex-col items-center gap-8 px-4 sm:px-6 md:w-max md:flex-row md:items-center md:gap-10 md:px-8 lg:px-16',
+            !fullMotion && 'md:snap-x md:snap-mandatory'
+          )}
         >
           {appScreenSrcs(locale).map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-glow-cool/40 bg-white p-2 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5"
+              className={cn(
+                'flex max-h-full w-[220px] shrink-0 items-center rounded-[2.2rem] border border-glow-cool/40 bg-white p-2 sm:w-[240px] sm:p-3 md:w-[260px] md:p-2.5',
+                !fullMotion && 'md:snap-center'
+              )}
             >
               <Image
                 src={src}

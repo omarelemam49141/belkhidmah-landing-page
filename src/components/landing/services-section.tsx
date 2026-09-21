@@ -33,14 +33,14 @@ export function ServicesSection () {
   const locale = useLocale()
   const t = useTranslations('services')
   const phoneScreens = servicesPhoneScreens(locale)
-  const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (reduced || !sectionRef.current) return
+    if (!fullMotion || !sectionRef.current) return
     const anim = initFacilityCardsAnimation({ sectionEl: sectionRef.current })
     return () => anim?.kill()
-  }, [reduced])
+  }, [fullMotion])
 
   return (
     <section
@@ -90,7 +90,7 @@ export function ServicesSection () {
                 <li
                   key={item.key}
                   data-facility-card
-                  className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12 [transform-style:preserve-3d]"
+                  className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12"
                 >
                   <span
                     data-facility-stagger

@@ -17,6 +17,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { fadeUp, motionTransition, staggerContainer } from '@/lib/motion/presets'
 import { homeSectionHref } from '@/lib/landing/home-section-href'
