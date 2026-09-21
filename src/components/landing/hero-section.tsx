@@ -3,7 +3,7 @@
 import { ArrowRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
-import { HeroSplashScreen } from '@/components/landing/hero-splash-screen'
+import { HeroSplashTarget, usePageSplash } from '@/components/landing/page-splash'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
 import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'

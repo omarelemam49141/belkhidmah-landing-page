@@ -3,6 +3,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
+  ;(window as unknown as { gsap?: typeof gsap; ScrollTrigger?: typeof ScrollTrigger }).gsap = gsap
+  ;(window as unknown as { gsap?: typeof gsap; ScrollTrigger?: typeof ScrollTrigger }).ScrollTrigger = ScrollTrigger
 }
 
 export function initHorizontalPinScroll(options: {
@@ -150,45 +152,90 @@ export function initFacilityCardsAnimation(options: {
 export function initContactFacilitiesAnimation(options: {
   sectionEl: HTMLElement
 }): { kill: () => void } | null {
-  if (window.innerWidth < 768) return null
+  if (typeof window === 'undefined' || window.innerWidth < 1024) return null
 
   const { sectionEl } = options
-  const itemsWrap = sectionEl.querySelector('[data-contact-items]') as HTMLElement | null
-  const stack = sectionEl.querySelector('[data-contact-stack]') as HTMLElement | null
-  const items = gsap.utils.toArray<HTMLElement>('[data-contact-item]', sectionEl)
-  if (!itemsWrap || items.length < 2) return null
+  const cards = gsap.utils.toArray<HTMLElement>('[data-contact-card]', sectionEl)
+  const layer1 = sectionEl.querySelector('[data-map-layer="1"]') as HTMLElement | null
+  const layer2 = sectionEl.querySelector('[data-map-layer="2"]') as HTMLElement | null
+
+  if (cards.length < 3) return null
 
   const setActive = (index: number) => {
-    items.forEach((el, i) => {
-      el.classList.toggle('is-active', i === index)
+    cards.forEach((card, i) => {
+      card.classList.toggle('is-active', i === index)
     })
-    stack?.classList.toggle('is-second', index === 1)
+  }
+
+  const setMapCrossfade = (progress: number) => {
+    if (!layer1 || !layer2) return
+    // From 0 to 0.28: layer1 = 1, layer2 = 0
+    // From 0.28 to 0.65: crossfade
+    // From 0.65 to 1.0: layer1 = 0, layer2 = 1
+    if (progress <= 0.28) {
+      layer1.style.opacity = '1'
+      layer1.style.pointerEvents = 'auto'
+      layer2.style.opacity = '0'
+      layer2.style.pointerEvents = 'none'
+    } else if (progress >= 0.65) {
+      layer1.style.opacity = '0'
+      layer1.style.pointerEvents = 'none'
+      layer2.style.opacity = '1'
+      layer2.style.pointerEvents = 'auto'
+    } else {
+      const blend = (progress - 0.28) / (0.65 - 0.28)
+      layer1.style.opacity = (1 - blend).toFixed(3)
+      layer1.style.pointerEvents = blend > 0.5 ? 'none' : 'auto'
+      layer2.style.opacity = blend.toFixed(3)
+      layer2.style.pointerEvents = blend > 0.5 ? 'auto' : 'none'
+    }
   }
 
   setActive(0)
+  setMapCrossfade(0)
 
   const clickCleanups: Array<() => void> = []
   let st: ScrollTrigger | null = null
 
   const ctx = gsap.context(() => {
+    const scrollTravel = Math.max(window.innerHeight * 2, 1400)
+
     st = ScrollTrigger.create({
-      trigger: itemsWrap,
-      start: 'top 5.75rem',
-      end: () =>
-        `+=${Math.max(sectionEl.offsetHeight - itemsWrap.offsetHeight, window.innerHeight * 1.2)}`,
+      trigger: sectionEl,
+      start: 'top top',
+      end: `+=${scrollTravel}`,
+      pin: sectionEl,
+      pinSpacing: true,
+      scrub: 0.5,
+      anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
-        setActive(self.progress >= 0.5 ? 1 : 0)
+        const p = self.progress
+        const activeIdx = p < 0.33 ? 0 : p < 0.67 ? 1 : 2
+        setActive(activeIdx)
+        setMapCrossfade(p)
+      },
+      onRefresh: (self) => {
+        const p = self.progress
+        const activeIdx = p < 0.33 ? 0 : p < 0.67 ? 1 : 2
+        setActive(activeIdx)
+        setMapCrossfade(p)
       }
     })
 
-    items.forEach((item, index) => {
-      const toggler = item.querySelector('[data-contact-toggler]')
+    cards.forEach((card, index) => {
+      const toggler = card.querySelector('[data-contact-toggler]')
       if (!toggler) return
-      const onClick = () => {
-        if (!st) return
+      const onClick = (e: Event) => {
+        e.preventDefault()
+        if (!st) {
+          setActive(index)
+          setMapCrossfade(index === 0 ? 0 : index === 1 ? 0.5 : 1)
+          return
+        }
         const span = st.end - st.start
-        const target = st.start + span * (index === 0 ? 0.08 : 0.78)
+        const targetProgress = index === 0 ? 0.08 : index === 1 ? 0.5 : 0.88
+        const target = st.start + span * targetProgress
         const lenis = window.__landingLenis
         if (lenis) lenis.scrollTo(target, { duration: 0.9 })
         else window.scrollTo({ top: target, behavior: 'smooth' })
@@ -198,14 +245,17 @@ export function initContactFacilitiesAnimation(options: {
     })
   }, sectionEl)
 
-  const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 120)
+  const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 150)
 
   return {
     kill: () => {
       window.clearTimeout(refreshId)
       clickCleanups.forEach((fn) => fn())
       ctx.revert()
-      setActive(0)
+      st?.kill()
+      cards.forEach((c) => c.classList.remove('is-active'))
+      if (layer1) layer1.style.opacity = ''
+      if (layer2) layer2.style.opacity = ''
     }
   }
 }

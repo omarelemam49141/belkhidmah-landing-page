@@ -8,23 +8,26 @@ import { ScreensSection } from '@/components/landing/screens-section'
 import { DownloadSection } from '@/components/landing/download-section'
 import { ContactSection } from '@/components/landing/contact-section'
 import { LandingFooter } from '@/components/landing/landing-footer'
+import { PageSplash } from '@/components/landing/page-splash'
 import { SmoothScroll } from '@/components/motion/smooth-scroll'
 
 export function LandingPage () {
   return (
-    <SmoothScroll>
-      <div className="relative min-h-screen bg-white text-neutral-900 selection:bg-brand-pink selection:text-white">
-        <LandingNavbar />
-        <main className="bg-white">
-          <HeroSection />
-          <AboutSection />
-          <ServicesSection />
-          <ScreensSection />
-          <DownloadSection />
-          <ContactSection />
-        </main>
-        <LandingFooter />
-      </div>
-    </SmoothScroll>
+    <PageSplash>
+      <SmoothScroll>
+        <div className="relative min-h-screen bg-white text-neutral-900 selection:bg-brand-pink selection:text-white">
+          <LandingNavbar />
+          <main className="bg-white">
+            <HeroSection />
+            <AboutSection />
+            <ServicesSection />
+            <ScreensSection />
+            <DownloadSection />
+            <ContactSection />
+          </main>
+          <LandingFooter />
+        </div>
+      </SmoothScroll>
+    </PageSplash>
   )
 }

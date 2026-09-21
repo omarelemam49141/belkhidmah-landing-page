@@ -370,3 +370,14 @@ html[data-motion="lite"] #services li,
 html[data-motion="none"] #services li {
   background-color: rgb(11 19 36 / 0.78);
 }
+
+html.splash-locked,
+html.splash-locked body {
+  overflow: hidden !important;
+}
+
+html[data-motion="none"] .page-splash-overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
