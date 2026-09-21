@@ -15,7 +15,7 @@ export function LandingFooter () {
   const sectionHref = (id: string) => homeSectionHref(id, pathname, locale)
 
   return (
-    <footer className="relative border-t border-brand-magenta/35 bg-neutral-950 text-neutral-300">
+    <footer className="relative z-30 border-t border-brand-magenta/35 bg-neutral-950 text-neutral-300">
       <button
         type="button"
         onClick={() => {
@@ -23,7 +23,7 @@ export function LandingFooter () {
           if (lenis) lenis.scrollTo(0, { duration: 1.2 })
           else window.scrollTo({ top: 0, behavior: 'smooth' })
         }}
-        className="absolute left-1/2 top-0 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-brand-magenta text-white shadow-lg transition-transform hover:scale-105"
+        className="absolute left-1/2 top-0 z-10 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-brand-magenta text-white shadow-lg transition-transform hover:scale-105"
         aria-label={t('backToTop')}
       >
         <ChevronUp className="h-5 w-5" />
