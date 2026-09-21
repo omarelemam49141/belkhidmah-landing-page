@@ -3,6 +3,7 @@
 import { ArrowRight } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
+import { HeroSplashScreen } from '@/components/landing/hero-splash-screen'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
 import { ScrollHighlightHeading } from '@/components/motion/scroll-highlight-heading'
@@ -33,7 +34,7 @@ export function HeroSection () {
             <div className="absolute inset-8 rounded-[3rem] bg-glow-cool/35 blur-3xl hero-phone-glow" aria-hidden />
             <div className="relative z-10 animate-float">
               <SpotlightTiltCard glass={false}>
-                <PhoneMockup screens={phoneScreens} priority />
+                <PhoneMockup lead={<HeroSplashScreen />} screens={phoneScreens} priority />
               </SpotlightTiltCard>
             </div>
           </FadeIn>

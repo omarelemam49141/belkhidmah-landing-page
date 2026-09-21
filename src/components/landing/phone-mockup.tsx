@@ -14,6 +14,7 @@ if (typeof window !== 'undefined') {
 type PhoneMockupProps = {
   src?: string
   screens?: string[]
+  lead?: ReactNode
   axis?: 'vertical' | 'horizontal'
   alt?: string
   priority?: boolean
@@ -23,6 +24,7 @@ type PhoneMockupProps = {
 export function PhoneMockup ({
   src,
   screens,
+  lead,
   axis = 'vertical',
   alt = '',
   priority = false,
@@ -31,9 +33,10 @@ export function PhoneMockup ({
   const rootRef = useRef<HTMLDivElement>(null)
   const stackRef = useRef<HTMLDivElement>(null)
   const fullMotion = useFullMotion()
-  const list = screens?.length ? screens : src ? [src] : []
-  const visible = fullMotion ? list : list.slice(0, 1)
-  const pageCount = visible.length
+  const imageList = screens?.length ? screens : src ? [src] : []
+  const includeLead = Boolean(lead)
+  const visible = fullMotion ? imageList : includeLead ? [] : imageList.slice(0, 1)
+  const pageCount = Number(includeLead) + visible.length
   const horizontal = axis === 'horizontal'
   const scrubPages = pageCount > 1 && fullMotion
 
@@ -90,7 +93,7 @@ export function PhoneMockup ({
         />
         <div
           aria-hidden
-          className="absolute left-1/2 top-2.5 z-20 h-[22px] w-[92px] -translate-x-1/2 rounded-full bg-neutral-950 shadow-inner"
+          className="pointer-events-none absolute left-1/2 top-2.5 z-20 h-[22px] w-[92px] -translate-x-1/2 rounded-full bg-neutral-950 shadow-inner"
         />
 
         <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.85rem] bg-neutral-100">
@@ -104,6 +107,17 @@ export function PhoneMockup ({
             )}
             style={horizontal ? { width: `${pageCount * 100}%` } : undefined}
           >
+            {includeLead ? (
+              <div
+                className={cn(
+                  'relative shrink-0',
+                  horizontal ? 'h-full' : 'aspect-[9/19.5] w-full'
+                )}
+                style={horizontal ? { width: `${100 / pageCount}%` } : undefined}
+              >
+                {lead}
+              </div>
+            ) : null}
             {visible.map((screenSrc, index) => (
               <div
                 key={screenSrc}
@@ -115,7 +129,7 @@ export function PhoneMockup ({
               >
                 <Image
                   src={screenSrc}
-                  alt={index === 0 ? alt : ''}
+                  alt={!includeLead && index === 0 ? alt : ''}
                   fill
                   sizes="(max-width: 640px) 240px, (max-width: 1024px) 280px, 300px"
                   priority={priority && index === 0}
@@ -128,7 +142,7 @@ export function PhoneMockup ({
 
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-2 z-20 flex justify-center"
+          className="pointer-events-none absolute inset-x-0 bottom-2 z-20 flex justify-center"
         >
           <span className="h-[5px] w-28 rounded-full bg-white/70" />
         </div>

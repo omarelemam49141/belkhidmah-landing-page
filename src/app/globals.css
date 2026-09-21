@@ -184,6 +184,30 @@
   animation: float-subtle 4s ease-in-out infinite;
 }
 
+@keyframes hero-splash-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-splash-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.hero-splash-spin {
+  animation: hero-splash-spin 1.6s linear infinite;
+}
+
+.hero-splash-float {
+  animation: hero-splash-float 3s ease-in-out infinite;
+}
+
 @keyframes nav-cta-glow {
   0%,
   100% {
@@ -281,6 +305,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-nav-cta-glow,
   .animate-float,
+  .hero-splash-spin,
+  .hero-splash-float,
   .ep-loader-stride,
   .ep-loader-streak,
   .ep-loader-speedlines,
@@ -301,6 +327,8 @@ html[data-motion="none"] section[id] {
 }
 html[data-motion="lite"] .animate-nav-cta-glow,
 html[data-motion="none"] .animate-nav-cta-glow,
+html[data-motion="none"] .hero-splash-spin,
+html[data-motion="none"] .hero-splash-float,
 html[data-motion="lite"] .animate-float,
 html[data-motion="none"] .animate-float,
 html[data-motion="lite"] .ep-loader-stride,

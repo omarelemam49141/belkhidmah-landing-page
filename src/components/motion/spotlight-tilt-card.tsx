@@ -28,6 +28,10 @@ export function SpotlightTiltCard ({
 
   function handlePointer (event: React.PointerEvent<HTMLDivElement>) {
     if (!fullMotion || reduced || event.pointerType !== 'mouse') return
+    if ((event.target as Element | null)?.closest?.('[data-no-tilt]')) {
+      reset()
+      return
+    }
     const el = cardRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
