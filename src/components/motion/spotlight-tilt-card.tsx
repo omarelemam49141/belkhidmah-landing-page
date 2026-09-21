@@ -42,7 +42,8 @@ export function SpotlightTiltCard ({
       onPointerMove={handlePointer}
       onPointerLeave={reset}
       className={cn(
-        'relative [transform-style:preserve-3d] will-change-transform',
+        'relative',
+        fullMotion && '[transform-style:preserve-3d] will-change-transform',
         'transition-transform duration-300 ease-out',
         glass &&
           'group h-full overflow-hidden rounded-2xl border border-white/12 bg-white/7 shadow-[0_18px_50px_-20px_rgba(0,0,0,0.65)] backdrop-blur-xl transition-[transform,box-shadow,border-color]',

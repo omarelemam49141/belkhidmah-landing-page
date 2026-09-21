@@ -83,32 +83,60 @@ export function ServicesSection () {
             </ScrollReveal>
           </div>
 
-          <ul className="space-y-3">
-            {SERVICE_ITEMS.map((item) => {
-              const Icon = item.icon
-              return (
-                <li
-                  key={item.key}
-                  data-facility-card
-                  className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12"
-                >
-                  <span
-                    data-facility-stagger
-                    data-facility-media
-                    className={cn(
-                      'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
-                      item.wrap
-                    )}
+          {fullMotion ? (
+            <ul className="space-y-3">
+              {SERVICE_ITEMS.map((item) => {
+                const Icon = item.icon
+                return (
+                  <li
+                    key={item.key}
+                    data-facility-card
+                    className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12"
                   >
-                    <Icon className={cn('h-6 w-6', item.color)} />
-                  </span>
-                  <span data-facility-stagger className="text-lg font-semibold tracking-tight">
-                    {t(item.key)}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
+                    <span
+                      data-facility-stagger
+                      data-facility-media
+                      className={cn(
+                        'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
+                        item.wrap
+                      )}
+                    >
+                      <Icon className={cn('h-6 w-6', item.color)} />
+                    </span>
+                    <span data-facility-stagger className="text-lg font-semibold tracking-tight">
+                      {t(item.key)}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            <ScrollReveal>
+              <ul className="space-y-3">
+                {SERVICE_ITEMS.map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <li
+                      key={item.key}
+                      className="group flex items-center gap-4 rounded-2xl border border-white/12 bg-white/8 px-4 py-3.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/12"
+                    >
+                      <span
+                        className={cn(
+                          'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border',
+                          item.wrap
+                        )}
+                      >
+                        <Icon className={cn('h-6 w-6', item.color)} />
+                      </span>
+                      <span className="text-lg font-semibold tracking-tight">
+                        {t(item.key)}
+                      </span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </ScrollReveal>
+          )}
         </div>
       </div>
     </section>

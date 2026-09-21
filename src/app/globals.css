@@ -290,3 +290,54 @@
     transform: none;
   }
 }
+
+html[data-motion="lite"] {
+  scroll-behavior: smooth;
+}
+
+html[data-motion="lite"] section[id],
+html[data-motion="none"] section[id] {
+  scroll-margin-top: 5.5rem;
+}
+html[data-motion="none"] .animate-nav-cta-glow,
+html[data-motion="lite"] .animate-float,
+html[data-motion="none"] .animate-float,
+html[data-motion="lite"] .ep-loader-stride,
+html[data-motion="none"] .ep-loader-stride,
+html[data-motion="lite"] .ep-loader-streak,
+html[data-motion="none"] .ep-loader-streak,
+html[data-motion="lite"] .ep-loader-speedlines,
+html[data-motion="none"] .ep-loader-speedlines,
+html[data-motion="lite"] .ep-loader-wordmark,
+html[data-motion="none"] .ep-loader-wordmark {
+  animation: none !important;
+}
+
+html[data-motion="lite"] .hero-phone-glow,
+html[data-motion="none"] .hero-phone-glow {
+  display: none;
+}
+
+html[data-motion="lite"] .landing-nav-shell,
+html[data-motion="none"] .landing-nav-shell {
+  background-color: rgb(10 16 28 / 0.94) !important;
+}
+
+html[data-motion="lite"] .backdrop-blur-sm,
+html[data-motion="none"] .backdrop-blur-sm,
+html[data-motion="lite"] .backdrop-blur-md,
+html[data-motion="none"] .backdrop-blur-md,
+html[data-motion="lite"] .backdrop-blur-xl,
+html[data-motion="none"] .backdrop-blur-xl,
+html[data-motion="lite"] .glass-panel,
+html[data-motion="none"] .glass-panel,
+html[data-motion="lite"] .glass-card-dark,
+html[data-motion="none"] .glass-card-dark {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-motion="lite"] #services li,
+html[data-motion="none"] #services li {
+  background-color: rgb(11 19 36 / 0.78);
+}

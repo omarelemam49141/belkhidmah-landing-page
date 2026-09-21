@@ -38,6 +38,7 @@ export function LandingNavbar () {
   const tFooter = useTranslations('footer')
   const tHero = useTranslations('hero')
   const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
   const pathname = usePathname()
   const locale = useLocale()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -103,7 +104,7 @@ export function LandingNavbar () {
     >
       <div
         className={cn(
-          'pointer-events-auto mx-auto flex max-w-7xl items-center gap-2 rounded-2xl border px-2.5 py-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:gap-3 sm:px-3 lg:rounded-full lg:px-4',
+          'pointer-events-auto landing-nav-shell mx-auto flex max-w-7xl items-center gap-2 rounded-2xl border px-2.5 py-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:gap-3 sm:px-3 lg:rounded-full lg:px-4',
           isScrolled
             ? 'border-white/15 bg-neutral-950/80 shadow-2xl shadow-black/40 backdrop-blur-xl'
             : 'border-white/10 bg-neutral-950/45 shadow-lg shadow-black/20 backdrop-blur-md'
@@ -147,7 +148,7 @@ export function LandingNavbar () {
                       : 'text-white/70 hover:bg-white/5 hover:text-white'
                   )}
                 >
-                  {isActive && !reduced ? (
+                  {isActive && fullMotion ? (
                     <motion.span
                       layoutId="landing-nav-pill"
                       className="absolute inset-0 rounded-full bg-white/12 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]"
@@ -167,12 +168,14 @@ export function LandingNavbar () {
                 pathname === '/privacy' && 'text-white'
               )}
             >
-              {pathname === '/privacy' && !reduced ? (
+              {pathname === '/privacy' && fullMotion ? (
                 <motion.span
                   layoutId="landing-nav-pill"
                   className="absolute inset-0 rounded-full bg-white/12 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]"
                   transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                 />
+              ) : pathname === '/privacy' ? (
+                <span className="absolute inset-0 rounded-full bg-white/12" />
               ) : null}
               <span className="relative z-10">{tNav('privacy')}</span>
             </Link>
@@ -181,7 +184,7 @@ export function LandingNavbar () {
 
         <div className="ms-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="relative">
-            {!reduced && (
+            {fullMotion && (
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-glow-cool/45 blur-lg animate-nav-cta-glow"

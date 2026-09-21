@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { useFullMotion } from '@/hooks/use-motion-level'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { cn } from '@/lib/utils'
 import type { VariantProps } from 'class-variance-authority'
@@ -16,8 +17,9 @@ export function MotionButton ({
   ...props
 }: MotionButtonProps) {
   const reduced = useReducedMotion()
+  const fullMotion = useFullMotion()
 
-  if (reduced || disabled) {
+  if (reduced || disabled || !fullMotion) {
     return (
       <Button className={className} disabled={disabled} {...props}>
         {children}
