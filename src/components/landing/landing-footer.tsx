@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { Link as LocaleLink, usePathname } from '@/i18n/routing'
 import { BrandMark } from '@/components/brand/BrandMark'
 import { homeSectionHref } from '@/lib/landing/home-section-href'
+import { VENDOR_PORTAL_URL } from '@/lib/site'
 
 export function LandingFooter () {
   const t = useTranslations('footer')
@@ -65,6 +66,11 @@ export function LandingFooter () {
               <li>
                 <a href={sectionHref('contact')} className="transition-colors hover:text-brand-pink">
                   {tNav('contact')}
+                </a>
+              </li>
+              <li>
+                <a href={VENDOR_PORTAL_URL} className="transition-colors hover:text-brand-pink">
+                  {tNav('goToPortal')}
                 </a>
               </li>
               <li>

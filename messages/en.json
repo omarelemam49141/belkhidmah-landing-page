@@ -12,6 +12,8 @@
     "contact": "Contact",
     "privacy": "Privacy Policy",
     "download": "Download",
+    "portal": "Portal",
+    "goToPortal": "Go to portal",
     "openMenu": "Open menu",
     "menuTitle": "Menu"
   },
@@ -21,7 +23,8 @@
     "subtitle": "Simple, practical, and reliable",
     "description": "Professional home services at a fair cost.",
     "ctaPrimary": "Download",
-    "ctaSecondary": "Learn more"
+    "ctaSecondary": "Learn more",
+    "ctaPortal": "Go to portal"
   },
   "about": {
     "badge": "About",

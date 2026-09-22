@@ -1,8 +1,9 @@
 'use client'
 
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ExternalLink } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { BrandMark } from '@/components/brand/BrandMark'
+import { VENDOR_PORTAL_URL } from '@/lib/site'
 import { HeroSplashTarget, usePageSplash } from '@/components/landing/page-splash'
 import { PhoneMockup } from '@/components/landing/phone-mockup'
 import { FadeIn } from '@/components/motion/fade-in'
@@ -104,6 +105,18 @@ export function HeroSection () {
               className="border-white/30 bg-white/10 px-8 py-6 text-base font-semibold text-white shadow-lg backdrop-blur-md hover:border-white/50 hover:bg-white/20"
             >
               <a href="#about">{t('ctaSecondary')}</a>
+            </MotionButton>
+
+            <MotionButton
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 bg-white/10 px-8 py-6 text-base font-semibold text-white shadow-lg backdrop-blur-md hover:border-white/50 hover:bg-white/20"
+            >
+              <a href={VENDOR_PORTAL_URL} className="flex items-center gap-2">
+                <span>{t('ctaPortal')}</span>
+                <ExternalLink className="h-4 w-4" />
+              </a>
             </MotionButton>
           </FadeIn>
         </div>

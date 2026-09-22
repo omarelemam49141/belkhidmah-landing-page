@@ -1,5 +1,7 @@
 const DEFAULT_GITHUB_PAGES_ORIGIN = 'https://omarelemam49141.github.io'
 
+export const VENDOR_PORTAL_URL = `${DEFAULT_GITHUB_PAGES_ORIGIN}/Belkhidmah-Vendor-Portal/`
+
 export function getBasePath (): string {
   const path = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
   if (!path) return ''

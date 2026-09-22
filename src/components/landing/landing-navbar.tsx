@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Menu } from 'lucide-react'
+import { ArrowRight, Download, ExternalLink, Menu } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/i18n/routing'
 import { BrandMark } from '@/components/brand/BrandMark'
+import { VENDOR_PORTAL_URL } from '@/lib/site'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { MotionButton } from '@/components/motion/motion-button'
 import { Button } from '@/components/ui/button'
@@ -183,6 +184,18 @@ export function LandingNavbar () {
         </nav>
 
         <div className="ms-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <MotionButton
+            asChild
+            size="sm"
+            variant="outline"
+            className="hidden rounded-full border-white/20 bg-white/5 px-3 text-white shadow-none hover:bg-white/15 hover:text-white sm:inline-flex"
+          >
+            <a href={VENDOR_PORTAL_URL} className="flex items-center gap-1.5 font-semibold">
+              <ExternalLink className="h-3.5 w-3.5" />
+              <span>{tNav('portal')}</span>
+            </a>
+          </MotionButton>
+
           <div className="relative">
             <span
               aria-hidden
@@ -256,6 +269,16 @@ export function LandingNavbar () {
                     </motion.a>
                   )
                 })}
+                <motion.div variants={reduced ? undefined : fadeUp}>
+                  <a
+                    href={VENDOR_PORTAL_URL}
+                    onClick={closeMenu}
+                    className="mt-1 flex items-center gap-2 rounded-xl border border-white/10 px-3 py-2.5 text-sm font-medium text-white/90 transition-colors duration-200 hover:bg-white/10"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {tNav('goToPortal')}
+                  </a>
+                </motion.div>
                 <motion.div variants={reduced ? undefined : fadeUp}>
                   <Link
                     href="/privacy"
